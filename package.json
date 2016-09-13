@@ -1,0 +1,27 @@
+{
+  "name": "express_server",
+  "version": "1.0.0",
+  "description": "The express application for sending a receiving data to the front-end application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SDP-DT04/Web-Application.git"
+  },
+  "keywords": [
+    "express",
+    "server",
+    "node"
+  ],
+  "author": "DT04",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SDP-DT04/Web-Application/issues"
+  },
+  "homepage": "https://github.com/SDP-DT04/Web-Application#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
