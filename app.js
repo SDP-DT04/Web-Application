@@ -6,9 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index'); //Route for homepage
-var users = require('./routes/users');
+var id = require('./routes/id');
 var data = require('./routes/data'); //Route for database connection
-
+var name = require('./routes/name');
 var app = express();
 
 // view engine setup
@@ -24,8 +24,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
-app.use('/data', data);  //Route to database
+app.use('/id', id); //route based on Swimmer ID
+app.use('/data', data); //route to get all the data from the database
+app.use('/name', name); //route based on Swimmer name
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -57,6 +58,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
