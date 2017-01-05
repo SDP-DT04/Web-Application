@@ -11,11 +11,17 @@
     "debug": "~2.2.0",
     "express": "~4.13.4",
     "express-handlebars": "^3.0.0",
+    "grunt": "^1.0.1",
     "handlebars": "^4.0.6",
-    "jade": "~1.11.0",
     "mongojs": "^2.4.0",
     "morgan": "~1.7.0",
     "nodemon": "^1.11.0",
     "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-requirejs": "latest",
+    "grunt-contrib-watch": "latest"
   }
 }
