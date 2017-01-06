@@ -13,6 +13,7 @@
     "express-handlebars": "^3.0.0",
     "grunt": "^1.0.1",
     "handlebars": "^4.0.6",
+    "jshint": "^2.9.4",
     "mongojs": "^2.4.0",
     "morgan": "~1.7.0",
     "nodemon": "^1.11.0",
@@ -20,8 +21,15 @@
   },
   "devDependencies": {
     "grunt": "latest",
+    "grunt-concurrent": "^2.3.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-less": "latest",
     "grunt-contrib-requirejs": "latest",
-    "grunt-contrib-watch": "latest"
+    "grunt-contrib-watch": "latest",
+    "grunt-nodemon": "^0.4.2",
+    "jshint": "^2.9.4",
+    "load-grunt-tasks": "^3.5.2",
+    "nodemon": "^1.11.0"
   }
 }
