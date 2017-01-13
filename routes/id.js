@@ -1,12 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../database.js');
+var Proc = require('../lib/data-processor');
 
 router.get('/', function(req,res) {
-  db.data.find().sort({name:1}, function(err,user) {
-    if (err) return;
-    res.json(user);
-  });
+  proc = new Proc();
+  proc.process_dataset();
+  // db.data.find().sort({name:1}, function(err,user) {
+  //   if (err) return;
+  //   res.json(user);
+  // });
 });
 
 router.get('/:id', function(req,res) {
@@ -18,4 +21,3 @@ router.get('/:id', function(req,res) {
 });
 
 module.exports = router;
-
