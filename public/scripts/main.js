@@ -3,8 +3,13 @@ require.config({
         'jquery': 'vendor/jquery/dist/jquery',
         'underscore': 'vendor/underscore/underscore',
         'backbone': 'vendor/backbone/backbone',
-        'backbone.marionette' : 'vendor/backbone.marionette/lib/backbone.marionette',
-        'backbone.radio' : 'vendor/backbone.radio/src/backbone.radio'
+        'backbone.radio' : 'vendor/backbone.radio/src/backbone.radio',
+        'text' : 'vendor/text/text',
+        'handlebars' : '../../node_modules/handlebars/dist/handlebars.runtime.amd',
+        'hbs' : 'vendor/require-handlebars-plugin/hbs'
+    },
+    hbs: {
+        templateExtension: 'handlebars'
     },
     shim: {
         underscore: {
@@ -13,13 +18,10 @@ require.config({
         backbone: {
             exports: 'Backbone',
             deps: ['jquery', 'underscore']
-        },
-        marionette: {
-            exports: 'Backbone.Marionette',
-            deps: ['backbone']
         }
     },
-    deps: ['jquery', 'underscore']
+    deps: ['jquery', 'underscore'],
+
 });
 
 require(['views/app'], function(AppView) {

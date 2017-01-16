@@ -1,0 +1,14 @@
+# Node Modules #
+################
+
+node_modules/*
+
+
+# Bower Installs #
+#################
+public/scripts/vendor/*
+
+bin/*
+.idea/*
+dist/*
+

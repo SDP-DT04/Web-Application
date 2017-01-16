@@ -21,6 +21,13 @@
     "requirejs": "^2.3.2",
     "backbone.marionette": "marionette#^3.1.0",
     "bootstrap": "^3.3.7",
-    "chart.js": "^2.4.0"
+    "chart.js": "^2.4.0",
+    "handlebars": "^4.0.5",
+    "requirejs-handlebars": "^0.1.1",
+    "text": "^2.0.15",
+    "require-handlebars-plugin": "^1.0.0"
+  },
+  "devDependencies": {
+    "requirejs-handlebars": "^0.1.1"
   }
 }

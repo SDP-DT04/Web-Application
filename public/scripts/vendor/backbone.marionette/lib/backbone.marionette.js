@@ -1138,7 +1138,7 @@
 	    // use the parent view's proxyEvent handlers
 	    var childViewTriggers = this._childViewTriggers;
 
-	    // Call the event with the proxy name on the parent layout
+	    // Call the event with the proxy name on the parent layouts
 	    if (childViewTriggers && _.isString(childViewTriggers[eventName])) {
 	      this.triggerMethod.apply(this, [childViewTriggers[eventName]].concat(args));
 	    }

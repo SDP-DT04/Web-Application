@@ -4,13 +4,13 @@ module.exports = function(Chart) {
 
 	var helpers = Chart.helpers;
 
-	// The layout service is very self explanatory.  It's responsible for the layout within a chart.
-	// Scales, Legends and Plugins all rely on the layout service and can easily register to be placed anywhere they need
-	// It is this service's responsibility of carrying out that layout.
+	// The layouts service is very self explanatory.  It's responsible for the layouts within a chart.
+	// Scales, Legends and Plugins all rely on the layouts service and can easily register to be placed anywhere they need
+	// It is this service's responsibility of carrying out that layouts.
 	Chart.layoutService = {
 		defaults: {},
 
-		// Register a box to a chartInstance. A box is simply a reference to an object that requires layout. eg. Scales, Legend, Plugins.
+		// Register a box to a chartInstance. A box is simply a reference to an object that requires layouts. eg. Scales, Legend, Plugins.
 		addBox: function(chartInstance, box) {
 			if (!chartInstance.boxes) {
 				chartInstance.boxes = [];
@@ -41,7 +41,7 @@ module.exports = function(Chart) {
 			var bottomPadding = 0;
 
 			if (!isNaN(padding)) {
-				// options.layout.padding is a number. assign to all
+				// options.layouts.padding is a number. assign to all
 				leftPadding = padding;
 				rightPadding = padding;
 				topPadding = padding;
@@ -109,7 +109,7 @@ module.exports = function(Chart) {
 			// 1. Determine the minimum size of the chart area.
 			// 2. Split the remaining width equally between each vertical axis
 			// 3. Split the remaining height equally between each horizontal axis
-			// 4. Give each layout the maximum size it can be. The layout will return it's minimum size
+			// 4. Give each layouts the maximum size it can be. The layouts will return it's minimum size
 			// 5. Adjust the sizes of each axis based on it's minimum reported size.
 			// 6. Refit each axis
 			// 7. Position each axis in the final location
@@ -227,10 +227,10 @@ module.exports = function(Chart) {
 				}
 			}
 
-			// Let the left layout know the final margin
+			// Let the left layouts know the final margin
 			helpers.each(leftBoxes.concat(rightBoxes), finalFitVerticalBox);
 
-			// Recalculate because the size of each layout might have changed slightly due to the margins (label rotation for instance)
+			// Recalculate because the size of each layouts might have changed slightly due to the margins (label rotation for instance)
 			totalLeftBoxesWidth = leftPadding;
 			totalRightBoxesWidth = rightPadding;
 			totalTopBoxesHeight = topPadding;
@@ -251,7 +251,7 @@ module.exports = function(Chart) {
 				totalBottomBoxesHeight += box.height;
 			});
 
-			// Figure out if our chart area changed. This would occur if the dataset layout label rotation
+			// Figure out if our chart area changed. This would occur if the dataset layouts label rotation
 			// changed due to the application of the margins in step 6. Since we can only get bigger, this is safe to do
 			// without calling `fit` again
 			var newMaxChartAreaHeight = height - totalTopBoxesHeight - totalBottomBoxesHeight;

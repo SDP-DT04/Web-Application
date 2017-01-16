@@ -22,6 +22,10 @@ module.exports = function(grunt) {
 
     // Task configuration
 
+        init: {
+
+        },
+
         //Testing
         jshint: {
             all: ['Gruntfile.js', 'server.js', 'database.js', 'routes/*.js', 'public/scripts/**/*.js'],
@@ -68,6 +72,17 @@ module.exports = function(grunt) {
                     //compiling base.less into main.min.css
                     "./dist/main.min.css": "./public/stylesheets/base.less"
                 }
+            }
+        },
+
+        handlebars: {
+            compile: {
+                options: {
+                    amd: true,
+                    wrapped: true
+                },
+                src: ["./views/**/*.handlebars"],
+                dest: "./public/templates/comp/comp.handlebars.js"
             }
         },
 
@@ -135,6 +150,7 @@ module.exports = function(grunt) {
     grunt.registerTask('comp-less', ['less']);
     grunt.registerTask('comp-less-dev', ['less:development']);
     grunt.registerTask('comp-less-prod', ['less:production']);
+    grunt.registerTask('comp-hbs', ['handlebars']);
 
     //testing
     grunt.registerTask('test', ['jshint:all']) //this line will include all testing frameworks
@@ -151,5 +167,7 @@ module.exports = function(grunt) {
 
     //helpers - use this to run several tasks at once during development
     grunt.registerTask('devmode',['concurrent:dev'])
+    grunt.registerTask('init-dev',['init'])
+
 
 };

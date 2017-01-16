@@ -1,8 +1,3 @@
-define(['backbone'], function(Backbone) {
-    var App = Backbone.View.extend({
-        initialize: function() {
-            console.log( 'Wololo' );
-        }
+define(['hbs!../../views/home'], function(myTemplateHome) {
+        document.body.innerHTML = myTemplateHome({test: 'This is from RequireJS!'})
     });
-    return App;
-});
