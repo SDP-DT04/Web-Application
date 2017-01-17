@@ -5,7 +5,10 @@ var Proc = require('../lib/data-processor');
 
 router.get('/', function(req,res) {
   proc = new Proc();
-  proc.process_dataset();
+  proc.process_dataset(function(coeff) {
+    console.log(coeff);
+
+  });
   // db.data.find().sort({name:1}, function(err,user) {
   //   if (err) return;
   //   res.json(user);
