@@ -30,7 +30,7 @@ server.use(express.static(path.join(__dirname, 'public')));
 //server.use('/', routes);
 
 server.get('/', function(req,res) {
-  res.render('home')
+  res.render('home');
 });
 
 server.use('/id', id); //route based on Swimmer ID

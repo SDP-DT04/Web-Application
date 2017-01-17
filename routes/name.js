@@ -20,7 +20,7 @@ router.post('/', function(req, res){
     console.log(req.body);
     db.data.save(req.body);
     res.json(req.body);
-})
+});
 
 
 module.exports = router;

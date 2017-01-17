@@ -14,7 +14,7 @@ router.get('/:id', function(req,res) {
   db.data.findOne({_id: db.ObjectId(swimmerID)}, function (err, user) {
     if (err) return;
     res.json(user);
-  })
+  });
 });
 
 module.exports = router;

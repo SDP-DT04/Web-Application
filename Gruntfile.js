@@ -22,13 +22,25 @@ module.exports = function(grunt) {
 
     // Task configuration
 
-        init: {
-
+        //Shell commands
+        shell: {
+            mongod: {
+                command: 'mongod',
+                options: {
+                    async: true
+                }
+            },
+            python: {
+                command: 'python ./init/generate_db_file.py 30'
+            },
+            add: {
+                command: 'mongoimport --db test --collection data --drop --file db.json'
+            }
         },
 
         //Testing
         jshint: {
-            all: ['Gruntfile.js', 'server.js', 'database.js', 'routes/*.js', 'public/scripts/**/*.js'],
+            all: ['Gruntfile.js', 'server.js', 'database.js', 'routes/*.js', 'public/scripts/views/*.js', 'public/scripts/views/main.js'],
             server: ['server.js', 'database.js', 'routes/*.js'],
             public: ['public/scripts/**/*.js']
         },
@@ -86,6 +98,15 @@ module.exports = function(grunt) {
             }
         },
 
+        bower: {
+            install: {
+                options: {
+                    targetDir: 'public/scripts/vendor',
+                    layout: 'byComponent'
+                }
+            }
+        },
+
         //Server
         nodemon: {
             dev: {
@@ -136,16 +157,20 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
 
     // Task definitions, you can type the first argument into the command line to execute the corresponding task
-    // eg.) grunt server runs nodemon:dev, default runs everything
+    // eg.) grunt server runs nodemon:dev, default runs everything... I don't recommend this option
 
-    //task registration follows the same pattern as their definitions\
+    //task registration follows the same pattern as their definitions
 
     //default - run everything
     grunt.registerTask('default', []);
 
+    //initialization
+    grunt.registerTask('init-database', ['shell:python', 'shell:add']);
+    grunt.registerTask('init-dev', ['bower', 'comp-clean', 'comp', 'test']);
+
     //compilation
-    grunt.registerTask('comp', ['requirejs', 'less'])
-    grunt.registerTask('comp-clean', ['clean:css']);
+    grunt.registerTask('comp', ['requirejs', 'less']);
+    grunt.registerTask('comp-clean', ['clean:css', 'clean:js']);
     grunt.registerTask('comp-requirejs', ['requirejs']);
     grunt.registerTask('comp-less', ['less']);
     grunt.registerTask('comp-less-dev', ['less:development']);
@@ -153,7 +178,7 @@ module.exports = function(grunt) {
     grunt.registerTask('comp-hbs', ['handlebars']);
 
     //testing
-    grunt.registerTask('test', ['jshint:all']) //this line will include all testing frameworks
+    grunt.registerTask('test', ['jshint:all']); //this line will include all testing frameworks
     grunt.registerTask('test-jshint', ['jshint:all']);
     grunt.registerTask('test-public-jshint', ['jshint:public']);
     grunt.registerTask('test-server-jshint', ['jshint:server']);
@@ -162,12 +187,8 @@ module.exports = function(grunt) {
     grunt.registerTask('server', ['nodemon:dev']);
 
     //watchers
-    grunt.registerTask('watch',['watch'])
-    grunt.registerTask('',[''])
+    grunt.registerTask('watch',['watch']);
 
     //helpers - use this to run several tasks at once during development
-    grunt.registerTask('devmode',['concurrent:dev'])
-    grunt.registerTask('init-dev',['init'])
-
-
+    grunt.registerTask('devmode',['concurrent:dev']);
 };
