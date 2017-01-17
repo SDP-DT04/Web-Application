@@ -9,6 +9,8 @@ node_modules/*
 public/scripts/vendor/*
 
 bin/*
+
 .idea/*
+
 dist/*
 
