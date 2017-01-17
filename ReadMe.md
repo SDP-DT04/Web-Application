@@ -1,5 +1,6 @@
 # Web Application
 ![alt text][mongoDB] ![alt text][nodeJS] ![alt text][requireJS] ![alt text][handlebars] ![alt text][UA]
+
 The Web Application allows the coaching staff of the University of Akron Women's Swim Team to view and analyze data from the S.W.I.M. data system.
 
 Features Include:
