@@ -9,8 +9,20 @@ Features Include:
   - Ability to add new users to the RFID tag system
   - Data export to .csv
 
-### Node Installation
-Clone or Download the Repo to your desired directory. 
+### Required Components
+You'll want to go get the following:
+  -Python and an interpreter
+  -NodeJS
+  -MongoDB
+  -Grunt
+
+The following sections describes in detail how to get each.  I'd clone/download the repo now and setup your working directory.
+
+### Python
+
+You only need Python for development purposes as we can use it to help us generate some fake information for our MongoDB Database.  Installation instructions can be found here: https://www.python.org/downloads/
+
+### NodeJS
 If you don't have node installed on your machine, follow the instructions here: https://nodejs.org/en/
 
 ### MongoDB
@@ -21,23 +33,28 @@ Don't forget to add the following directory at the root of your machine:
 ```sh
 $ mkdir /data/db
 ```
-Mongo places its data at that location by default, and it won't start without that directory present.  Read the installation instruction carefully.
+Mongo places its data at that location by default, and it won't start without that directory present.
 
 You shouldn't need to change any of the application defaults as our website currently runs locally.  If you don't have a database ready to pull from, don't worry, Grunt will handle that for us.
 
 ### Grunt
 Once you have node installed, download Grunt. Grunt can execute different Javascript files.  We use Grunt for testing, compilation, and for an initial install of our project.
+
 ```sh
 $ npm install -g grunt-cli
 ```
-The -g means you can run grunt from anywhere on your machine.  Run this as sudo if your machine fails.  You should read more about Grunt here, it's cool: http://gruntjs.com/
+
+The -g means you can run grunt from anywhere on your machine.  Run this as sudo if your machine fails.  You can read more about Grunt here, it's cool: http://gruntjs.com/
 
 ### Initial Setup
-Once you have grunt installed, you'll need to install all the libraries and dependencies our application uses. Start off with the application's node dependencies:
+Once you have grunt installed, you'll need to install all the libraries and dependencies our server needs. Because this runs through node, you install them with:
+
 ```sh
 $ npm install
 ```
-We can use grunt for the rest.  To access to the full development suite: 
+all of of these dependencies are listed in the package.json file.  There's a separate section for development dependencies.
+
+We can use grunt for the rest.  This involves our front-end dependencies which are managed with bower.  To access to the full development suite: 
 ```sh
 $ grunt-init-database
 $ grunt-init-dev

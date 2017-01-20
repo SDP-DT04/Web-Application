@@ -23,7 +23,6 @@ for entry in range(0, int(sys.argv[1])):
     totTime = random.randint(8000, 15000)
     distance = random.randint(10, 15)
     date = random.randint(1473690000, 1473726191)
-    velocity = round(distance / (totTime/1000.0), 3)
 
     # randomly generate weight, which is typically a multiple of 5
     weight = random.randint(0, 100)
@@ -35,14 +34,14 @@ for entry in range(0, int(sys.argv[1])):
     time = 0
     i = 0
     force.append(round(random.random()))
-    while time < totTime:
+    while time < 11:
         force.append(round((force[i] + random.random()) / 2, 3))
-        time += 100
+        time += 1
         i += 1
 
     jsonText = "{\"date\": " + str(date) + ", \"name\": \"" + firstName + " " + lastName
     jsonText += "\", " + "\"weight\": " + str(weight) + ", \"tot_time\": " + str(totTime)
-    jsonText += ", \"distance\":  " + str(distance) +", \"velocity\": " + str(velocity) + " , \"force\": ["    
+    jsonText += ", \"distance\":  " + str(distance) +", \"coefficients\": ["
     for val in force: 
         jsonText += " " + str(val) + ", "
     jsonText += "0]}\n"
