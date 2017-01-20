@@ -11,10 +11,10 @@ Features Include:
 
 ### Required Components
 You'll want to go get the following:
-  -Python and an interpreter
-  -NodeJS
-  -MongoDB
-  -Grunt
+  - Python and an interpreter
+  - NodeJS
+  - MongoDB
+  - Grunt
 
 The following sections describes in detail how to get each.  I'd clone/download the repo now and setup your working directory.
 
