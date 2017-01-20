@@ -6,8 +6,8 @@ m4 = csvread('298_4.txt');
 m5 = csvread('595_1.txt');
 
 t = m4(:,1);
-accel = m4(:,2);
-%accel = cat(1, m(:,2),m5(:,2), m1(:,2), m2(:,2), m3(:,2)); 
+%accel = m3(:,2);
+accel = cat(1, m(:,2),m5(:,2), m1(:,2), m2(:,2), m3(:,2)); 
 
 %states
 

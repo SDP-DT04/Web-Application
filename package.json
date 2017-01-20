@@ -18,7 +18,8 @@
     "morgan": "~1.7.0",
     "nodemon": "^1.11.0",
     "serve-favicon": "~2.3.0",
-    "mathjs": "^3.8.1" 
+    "mathjs": "^3.8.1",
+    "serialport": "^4.0.6" 
   },
   "devDependencies": {
     "grunt": "latest",
