@@ -16,14 +16,21 @@ If you don't have node installed on your machine, follow the instructions here: 
 ### MongoDB
 MongoDB is used to contain information from the swimmer's workout.  You'll want to install MongoDB according to your systems specifications at: http://www.mongodb.org/downloads
 
-You shouldn't need to change any of the defaults as our application currently runs locally.  If you don't have a database ready to pull from, don't worry, Grunt will handle that for us.
+Don't forget to add the following directory at the root of your machine:
+
+```sh
+$ mkdir /data/db
+```
+Mongo places its data at that location by default, and it won't start without that directory present.  Read the installation instruction carefully.
+
+You shouldn't need to change any of the application defaults as our website currently runs locally.  If you don't have a database ready to pull from, don't worry, Grunt will handle that for us.
 
 ### Grunt
 Once you have node installed, download Grunt. Grunt can execute different Javascript files.  We use Grunt for testing, compilation, and for an initial install of our project.
 ```sh
 $ npm install -g grunt-cli
 ```
-The -g means you can run grunt from anywhere on your machine.  You should read more about Grunt here, it's cool: http://gruntjs.com/
+The -g means you can run grunt from anywhere on your machine.  Run this as sudo if your machine fails.  You should read more about Grunt here, it's cool: http://gruntjs.com/
 
 ### Initial Setup
 Once you have grunt installed, you'll need to install all the libraries and dependencies our application uses. Start off with the application's node dependencies:

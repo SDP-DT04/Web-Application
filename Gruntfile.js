@@ -35,6 +35,9 @@ module.exports = function(grunt) {
             },
             add: {
                 command: 'mongoimport --db test --collection data --drop --file db.json'
+            },
+            bower: {
+                command: 'bower install'
             }
         },
 
@@ -93,17 +96,8 @@ module.exports = function(grunt) {
                     amd: true,
                     wrapped: true
                 },
-                src: ["./views/**/*.handlebars"],
+                src: ["./public/views/**/*.handlebars"],
                 dest: "./public/templates/comp/comp.handlebars.js"
-            }
-        },
-
-        bower: {
-            install: {
-                options: {
-                    targetDir: 'public/scripts/vendor',
-                    layout: 'byComponent'
-                }
             }
         },
 
@@ -166,7 +160,7 @@ module.exports = function(grunt) {
 
     //initialization
     grunt.registerTask('init-database', ['shell:python', 'shell:add']);
-    grunt.registerTask('init-dev', ['bower', 'comp-clean', 'comp', 'test']);
+    grunt.registerTask('init-dev', ['shell:bower', 'comp-clean', 'comp', 'test']);
 
     //compilation
     grunt.registerTask('comp', ['requirejs', 'less']);
