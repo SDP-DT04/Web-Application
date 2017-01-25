@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../database.js');
+var db = require('../lib/database.js');
 
 router.get('/', function(req,res) {
   db.data.find().sort({name:1}, function(err,user) {
@@ -18,4 +18,3 @@ router.get('/:id', function(req,res) {
 });
 
 module.exports = router;
-
