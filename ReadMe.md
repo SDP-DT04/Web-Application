@@ -56,8 +56,8 @@ all of of these dependencies are listed in the package.json file.  There's a sep
 
 We can use grunt for the rest.  This involves our front-end dependencies which are managed with bower.  To access to the full development suite: 
 ```sh
-$ grunt-init-database
-$ grunt-init-dev
+$ grunt init-database
+$ grunt init-dev
 ```
 The first task sets you up with a database full of dummy information.  This requires python to be installed on your system, so if you experience a failure, that is why.  The second installs all the dependencies in our bower.json file, as well as compiles some code and runs some tests.  Feel free to skip the database step if you have your own dataset to work with.  
 
@@ -66,7 +66,7 @@ If you want to see what exactly these tasks are doing, check out Gruntfile.js.  
 ### Launching the Server
 The grunt command 
 ```sh
-$ grunt-devmode
+$ grunt devmode
 ```
 launches a node server in debug mode with nodemon active.  Navigate to 
 ```sh
