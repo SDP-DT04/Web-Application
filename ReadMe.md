@@ -66,7 +66,7 @@ If you want to see what exactly these tasks are doing, check out Gruntfile.js.  
 ### Launching the Server
 The grunt command 
 ```sh
-$ grunt-devmode
+$ grunt devmode
 ```
 launches a node server in debug mode with nodemon active.  Navigate to 
 ```sh
