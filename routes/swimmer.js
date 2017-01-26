@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../database.js');
+var db = require('../lib/database.js');
 var db_model = require('../swimmer_dbmodel');
 
 router.get('/', function(req,res) {

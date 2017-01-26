@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../database.js');
+var db = require('../lib/database.js');
 var app = require('../server.js');
 
 router.get('/', function(req, res) {

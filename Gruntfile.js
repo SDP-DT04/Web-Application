@@ -43,8 +43,8 @@ module.exports = function(grunt) {
 
         //Testing
         jshint: {
-            all: ['Gruntfile.js', 'server.js', 'database.js', 'routes/*.js', 'public/scripts/views/*.js', 'public/scripts/views/main.js'],
-            server: ['server.js', 'database.js', 'routes/*.js'],
+            all: ['Gruntfile.js', 'server.js', 'lib/*.js', 'routes/*.js', 'public/scripts/views/*.js', 'public/scripts/views/main.js'],
+            server: ['server.js', 'lib/*js', 'routes/*.js'],
             public: ['public/scripts/**/*.js']
         },
 
@@ -107,7 +107,7 @@ module.exports = function(grunt) {
                 options: {
                     file: 'server.js',
                     nodeArgs: ['--debug'],
-                    watchedFolders: ['routes', 'server.js', 'database.js'],
+                    watchedFolders: ['routes', 'server.js', 'lib'],
                     env: {
                         PORT: '3300'
                     }
