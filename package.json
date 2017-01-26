@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bluebird": "^3.4.7",
     "body-parser": "~1.15.1",
     "bower": "^1.8.0",
     "cookie-parser": "~1.4.3",
@@ -16,9 +17,12 @@
     "handlebars": "^4.0.6",
     "jshint": "^2.9.4",
     "mongojs": "^2.4.0",
+    "mongoose": "^4.7.8",
     "morgan": "~1.7.0",
+    "mpromise": "^0.5.5",
     "nodemon": "^1.11.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "grunt": "latest",

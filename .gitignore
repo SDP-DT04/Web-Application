@@ -11,3 +11,6 @@ public/scripts/vendor/*
 .idea/*
 
 dist/*
+
+init/generate_swimmers_file.py
+init/generate_workouts_file.py

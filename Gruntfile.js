@@ -31,7 +31,7 @@ module.exports = function(grunt) {
                 }
             },
             python: {
-                command: 'python ./init/generate_db_file.py 30'
+                command: 'python ./init/generate_swimmers_file.py 31'
             },
             add: {
                 command: 'mongoimport --db test --collection data --drop --file db.json'

@@ -1,7 +1,7 @@
 import random
 import sys
 
-outfile = open('db.json', 'w+')
+outfile = open('workouts.json', 'w+')
 
 # build array of last names
 infile = open('./init/first_names.txt', 'r')
@@ -18,10 +18,12 @@ infile.close()
 # generate as many entries as specified on the command line
 for entry in range(0, int(sys.argv[1])):
     # randomly generate some values
-    firstName = first_names[random.randint(0,19)]
-    lastName = last_names[random.randint(0,20)]
+    index = random.randint(0,30);
+    print(first_names);
+    firstName = first_names[index]
+    lastName = last_names[index]
     totTime = random.randint(8000, 15000)
-    distance = random.randint(10, 15)
+    distance = random.randint(10, 20)
     date = random.randint(1473690000, 1473726191)
 
     # randomly generate weight, which is typically a multiple of 5
@@ -30,19 +32,19 @@ for entry in range(0, int(sys.argv[1])):
         weight += 1
 
     # randomly generate force, which is taken at  100ms samples
-    force = []
+    coeff = []
     time = 0
     i = 0
-    force.append(round(random.random()))
+    coeff.append(round(random.random()))
     while time < 11:
-        force.append(round((force[i] + random.random()) / 2, 3))
+        coeff.append(round((coeff[i] + random.random()) / 2, 3))
         time += 1
         i += 1
 
     jsonText = "{\"date\": " + str(date) + ", \"name\": \"" + firstName + " " + lastName
     jsonText += "\", " + "\"weight\": " + str(weight) + ", \"tot_time\": " + str(totTime)
     jsonText += ", \"distance\":  " + str(distance) +", \"coefficients\": ["
-    for val in force: 
+    for val in coeff:
         jsonText += " " + str(val) + ", "
     jsonText += "0]}\n"
     
