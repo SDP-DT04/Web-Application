@@ -18,7 +18,9 @@
     "mongojs": "^2.4.0",
     "morgan": "~1.7.0",
     "nodemon": "^1.11.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "serialport": "^4.0.7",
+    "mathjs": "^3.9.0"
   },
   "devDependencies": {
     "grunt": "latest",
