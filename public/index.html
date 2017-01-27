@@ -8,5 +8,28 @@
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" media="screen" href="stylesheets/style.css" type="text/css" />
 </head>
+<body>
 <script data-main="scripts/main.js" src="scripts/vendor/requirejs/require.js"></script>
+
+<div id="swimmer">
+    <form id="addSwimmer" action="#">
+        <div>
+            <label for="Photo">Photo: </label><input id="Photo" type="file" />
+            <label for="Name">Name: </label><input id="Name" type="text"/>
+            <label for="RFID Tag">RFID_Tag: </label><input id="RFID Tag" type="text" />
+            <button id="add">Add</button>
+        </div>
+    </form>
+</div>
+
+<script id = "swimmerTemplate" type="text/template">
+    <img src="<%= Photo %>"/>
+    <ul>
+        <li><%= Name %></li>
+        <li><%= RFID_Tag %></li>
+    </ul>
+
+    <button class="delete">Delete</button>
+</script>
+</body>
 </html>

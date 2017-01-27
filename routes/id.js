@@ -10,8 +10,7 @@ router.get('/', function(req,res) {
 });
 
 router.get('/:id', function(req,res) {
-  var swimmerID = db.ObjectId(req.params.id);
-  db.data.findOne({_id: db.ObjectId(swimmerID)}, function (err, user) {
+  db.data.findOne({_id: db.ObjectId(req.params.id)}, function (err, user) {
     if (err) return;
     res.json(user);
   });

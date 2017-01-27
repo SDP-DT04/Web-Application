@@ -8,6 +8,7 @@ var exphbs = require('express-handlebars');
 var _ = require('underscore');
 
 var routes = require('./routes/index'); //Route for homepage
+var swimmer = require('./routes/swimmer');
 var id = require('./routes/id');
 var data = require('./routes/data'); //Route for database connection
 var name = require('./routes/name');
@@ -36,6 +37,7 @@ server.get('/', function(req,res) {
 server.use('/id', id); //route based on Swimmer ID
 server.use('/data', data); //route to get all the data from the database
 server.use('/name', name); //route based on Swimmer name
+server.use('/swimmer', swimmer)
 
 // catch 404 and forward to error handler
 server.use(function(req, res, next) {

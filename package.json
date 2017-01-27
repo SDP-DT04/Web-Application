@@ -16,9 +16,12 @@
     "handlebars": "^4.0.6",
     "jshint": "^2.9.4",
     "mongojs": "^2.4.0",
+    "mongoose": "^4.7.8",
     "morgan": "~1.7.0",
+    "mpromise": "^0.5.5",
     "nodemon": "^1.11.0",
     "serve-favicon": "~2.3.0",
+    "underscore": "^1.8.3",
     "serialport": "^4.0.7",
     "mathjs": "^3.9.0"
   },

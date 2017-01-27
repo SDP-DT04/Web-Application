@@ -7,7 +7,9 @@ require.config({
         'text' : 'vendor/text/text',
         'handlebars' : '../../node_modules/handlebars/dist/handlebars.runtime.amd',
         'hbs' : 'vendor/require-handlebars-plugin/hbs',
-        'chartjs' : 'vendor/chart.js/src/chart'
+        'chartjs' : 'vendor/chart.js/src/chart',
+        'handlebars' : 'vendor/handlebars/handlebars.amd',
+        'hbs' : 'vendor/require-handlebars-plugin/hbs'
     },
     hbs: {
         templateExtension: 'handlebars'
@@ -25,6 +27,20 @@ require.config({
 
 });
 
+<<<<<<< HEAD
 require(['views/app'], function(AppView) {
     new AppView;
 });
+=======
+require(['./views/RosterView'], function(RosterView) {
+
+    test = [
+        {Photo: 'images/nebraska.jpg', Name: 'Nebraska', RFID_Tag: '1'},
+        {Photo: 'images/applin.jpg', Name: 'Applin', RFID_Tag: '2'},
+        {Photo: 'images/kaltenborn.jpg', Name: 'Kaltenborn', RFID_Tag: '3'},
+        {Photo: 'images/myers.jpg', Name: "Myers", RFID_Tag: '4'}
+        ];
+
+    new RosterView(test);
+});
+>>>>>>> 19337c9ddcda9860547a1162b4252e8f19627170
