@@ -5,15 +5,23 @@ var db_model = require('../swimmer_dbmodel');
 
 router.get('/', function(req,res) {
     db.swimmers.find(function(err,swimmers) {
-        if (err) return;
-        res.json(swimmers);
+        if (!err) {
+            console.log(swimmers);
+            return res.send(swimmers);
+        } else {
+            return console.log(err);
+        }
     });
 });
 
 router.get('/:id', function(req,res) {
     db.swimmers.findOne({_id: db.ObjectId(req.params.id)}, function(err, swimmer) {
-        if (err) return;
-        res.json(swimmer);
+        if (!err) {
+            console.log(swimmers);
+            return res.send(swimmers);
+        } else {
+            return console.log(err);
+        }
     });
 });
 
@@ -25,6 +33,7 @@ router.post('/', function(req,res) {
     });
 
     db.swimmers.save(swimmer);
+    res.send(swimmer);
     console.log('new swimmer created');
 
 });
@@ -36,14 +45,14 @@ router.put('/:id', function(req, res) {
        swimmer.name = req.body.name;
        swimmer.workouts = req.body.workouts;
        db.swimmers.save(swimmer);
-   })
+   });
 });
 
 router.delete('/:id', function(req,res) {
     console.log('deleting swimmer ' + req.body.name);
     db.swimmers.remove({_id: db.ObjectId(req.params.id)}, function(err, swimmer) {
         console.log(req.body.name + ' removed');
-    })
-})
+    });
+});
 
 module.exports = router;

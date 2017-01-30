@@ -14,19 +14,19 @@
 <div id="swimmer">
     <form id="addSwimmer" action="#">
         <div>
-            <label for="Photo">Photo: </label><input id="Photo" type="file" />
-            <label for="Name">Name: </label><input id="Name" type="text"/>
-            <label for="RFID Tag">RFID_Tag: </label><input id="RFID Tag" type="text" />
+            <label for="photo">Photo: </label><input id="photo" type="file" />
+            <label for="rfid_tag">RFID_Tag: </label><input id="rfid_tag" type="text" />
+            <label for="name">Name: </label><input id="name" type="text"/>
             <button id="add">Add</button>
         </div>
     </form>
 </div>
 
 <script id = "swimmerTemplate" type="text/template">
-    <img src="<%= Photo %>"/>
+    <img src="<%= photo %>"/>
     <ul>
-        <li><%= Name %></li>
-        <li><%= RFID_Tag %></li>
+        <li><%= rfid_tag %></li>
+        <li><%= name %></li>
     </ul>
 
     <button class="delete">Delete</button>

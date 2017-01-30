@@ -1,17 +1,19 @@
 var app = app || {};
 
 define(['backbone', '/../collections/SwimmerCollection', '/../views/SwimmerView', '/../models/Swimmer'], function(Backbone) {
-    console.log('Inside Roster View!');
     app.RosterView = Backbone.View.extend({
         el: '#swimmer',
 
-        initialize: function (initialSwimmer) {
-            this.collection = new app.SwimmerCollection(initialSwimmer);
-            this.listenTo(this.collection, 'add', this.renderSwimmer);
+        initialize: function () {
+            console.log('Initialize Roster View');
+            this.collection = new app.SwimmerCollection();
+            this.collection.fetch();
             this.render();
+            this.listenTo(this.collection, 'add', this.renderSwimmer);
         },
 
         render: function () {
+            console.log('Rendering RosterView')
             this.collection.each(function (item) {
                     this.renderSwimmer(item);
                 },
@@ -20,6 +22,7 @@ define(['backbone', '/../collections/SwimmerCollection', '/../views/SwimmerView'
         },
 
         renderSwimmer: function (item) {
+            console.log('Rendering Swimmer View');
             var swimmerView = new app.SwimmerView({
                 model: item
             });
@@ -41,7 +44,7 @@ define(['backbone', '/../collections/SwimmerCollection', '/../views/SwimmerView'
                     $( el )
                 }
             });
-            this.collection.add( new app.Swimmer(formData))
+            this.collection.create(formData);
         }
     });
     return app.RosterView;

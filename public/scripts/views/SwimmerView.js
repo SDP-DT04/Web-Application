@@ -1,12 +1,12 @@
 var app = app || {};
 
 define(['backbone', 'underscore'], function(Backbone, _) {
-    console.log('Inside Swimmer View');
     app.SwimmerView = Backbone.View.extend({
         className: 'swimmerContainer',
         template: _.template($('#swimmerTemplate').html()),
 
         render: function () {
+            console.log('Rendering Swimmer View');
             //this.el is what we defined in tagName. use $el to get access to jQuery html() function
             this.$el.html(this.template(this.model.attributes));
             return this;
@@ -17,6 +17,7 @@ define(['backbone', 'underscore'], function(Backbone, _) {
         },
 
         deleteSwimmer: function(){
+            console.log('Deleting Swimmer in Backbone')
             this.model.destroy();
             this.remove();
         }

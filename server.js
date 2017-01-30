@@ -4,7 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var exphbs = require('express-handlebars');
 var _ = require('underscore');
 
 var routes = require('./routes/index'); //Route for homepage
@@ -16,8 +15,8 @@ var server = express();
 
 // view engine setup
 //server.set('views', path.join(__dirname, 'views'));
-server.engine('handlebars', exphbs({defaultLayout: 'main'}));
-server.set('view engine', 'handlebars'); //Use handlebars for view engine
+//server.engine('handlebars', exphbs({defaultLayout: 'main'}));
+//server.set('view engine', 'handlebars'); //Use handlebars for view engine
 
 
 // uncomment after placing your favicon in /public
@@ -28,11 +27,6 @@ server.use(bodyParser.urlencoded({ extended: false }));
 server.use(cookieParser());
 server.use(express.static(path.join(__dirname, 'public')));
 
-//server.use('/', routes);
-
-server.get('/', function(req,res) {
-  res.render('home');
-});
 
 server.use('/id', id); //route based on Swimmer ID
 server.use('/data', data); //route to get all the data from the database

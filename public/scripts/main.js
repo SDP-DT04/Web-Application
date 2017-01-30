@@ -26,12 +26,14 @@ require.config({
 
 require(['./views/RosterView'], function(RosterView) {
 
-    test = [
-        {Photo: 'images/nebraska.jpg', Name: 'Nebraska', RFID_Tag: '1'},
-        {Photo: 'images/applin.jpg', Name: 'Applin', RFID_Tag: '2'},
-        {Photo: 'images/kaltenborn.jpg', Name: 'Kaltenborn', RFID_Tag: '3'},
-        {Photo: 'images/myers.jpg', Name: "Myers", RFID_Tag: '4'}
-        ];
+    //test = [
+    //    {Photo: 'images/nebraska.jpg', Name: 'Nebraska', RFID_Tag: '1'},
+    //    {Photo: 'images/applin.jpg', Name: 'Applin', RFID_Tag: '2'},
+    //    {Photo: 'images/kaltenborn.jpg', Name: 'Kaltenborn', RFID_Tag: '3'},
+    //    {Photo: 'images/myers.jpg', Name: "Myers", RFID_Tag: '4'}
+    //    ];
 
-    new RosterView(test);
+    $(function() {
+        new RosterView(); //calls the initialize function defined in RosterView.js
+    });
 });
