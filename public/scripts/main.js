@@ -40,6 +40,3 @@ require(['./views/RosterView'], function(RosterView) {
         new RosterView(); //calls the initialize function defined in RosterView.js
     });
 });
-    new RosterView(test);
-});
-
