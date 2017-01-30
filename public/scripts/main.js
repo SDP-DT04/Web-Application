@@ -5,6 +5,9 @@ require.config({
         'backbone': 'vendor/backbone/backbone',
         'backbone.radio' : 'vendor/backbone.radio/src/backbone.radio',
         'text' : 'vendor/text/text',
+        'handlebars' : '../../node_modules/handlebars/dist/handlebars.runtime.amd',
+        'hbs' : 'vendor/require-handlebars-plugin/hbs',
+        'chartjs' : 'vendor/chart.js/src/chart',
         'handlebars' : 'vendor/handlebars/handlebars.amd',
         'hbs' : 'vendor/require-handlebars-plugin/hbs'
     },
@@ -37,3 +40,6 @@ require(['./views/RosterView'], function(RosterView) {
         new RosterView(); //calls the initialize function defined in RosterView.js
     });
 });
+    new RosterView(test);
+});
+
