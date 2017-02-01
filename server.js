@@ -17,7 +17,9 @@ var server = express();
 //server.set('views', path.join(__dirname, 'views'));
 //server.engine('handlebars', exphbs({defaultLayout: 'main'}));
 //server.set('view engine', 'handlebars'); //Use handlebars for view engine
-
+//server.set('view engine', 'html');;
+server.engine('html', require('uinexpress').__express);
+server.set('view engine', 'html');
 
 // uncomment after placing your favicon in /public
 //server.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

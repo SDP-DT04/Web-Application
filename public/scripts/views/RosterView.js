@@ -22,7 +22,7 @@ define(['backbone', '/../collections/SwimmerCollection', '/../views/SwimmerView'
         },
 
         renderSwimmer: function (item) {
-            console.log('Rendering Swimmer View');
+          //  console.log('Rendering Swimmer View');
             var swimmerView = new app.SwimmerView({
                 model: item
             });

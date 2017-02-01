@@ -8,6 +8,7 @@ define(['backbone', 'underscore'], function(Backbone, _) {
         render: function () {
             console.log('Rendering Swimmer View');
             //this.el is what we defined in tagName. use $el to get access to jQuery html() function
+            console.log(this.model.attributes);
             this.$el.html(this.template(this.model.attributes));
             return this;
         },

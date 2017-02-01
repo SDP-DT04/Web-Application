@@ -7,9 +7,7 @@ require.config({
         'text' : 'vendor/text/text',
         'handlebars' : '../../node_modules/handlebars/dist/handlebars.runtime.amd',
         'hbs' : 'vendor/require-handlebars-plugin/hbs',
-        'chartjs' : 'vendor/chart.js/src/chart',
-        'handlebars' : 'vendor/handlebars/handlebars.amd',
-        'hbs' : 'vendor/require-handlebars-plugin/hbs'
+        'chartjs' : 'vendor/chart.js/src/chart'
     },
     hbs: {
         templateExtension: 'handlebars'

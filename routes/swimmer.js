@@ -4,7 +4,7 @@ var db = require('../lib/database.js');
 var db_model = require('../swimmer_dbmodel');
 
 router.get('/', function(req,res) {
-    db.swimmers.find(function(err,swimmers) {
+    db.data.find(function(err,swimmers) {
         if (!err) {
             console.log(swimmers);
             return res.send(swimmers);
@@ -15,7 +15,7 @@ router.get('/', function(req,res) {
 });
 
 router.get('/:id', function(req,res) {
-    db.swimmers.findOne({_id: db.ObjectId(req.params.id)}, function(err, swimmer) {
+    db.data.findOne({_id: db.ObjectId(req.params.id)}, function(err, swimmer) {
         if (!err) {
             console.log(swimmers);
             return res.send(swimmers);

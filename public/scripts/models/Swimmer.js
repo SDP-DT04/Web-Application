@@ -4,9 +4,11 @@ define(['backbone'], function(Backbone) {
     app.Swimmer = Backbone.Model.extend({
         idAttribute: '_id',
         defaults: {
-            photo: 'images/peresie.jpg',
-            rfid_tag: '1234',
-            name: 'Coach Peresie'
+          swimmer : 'Ethan Schweinsberg',
+          distance : 7.1,
+          weight : 50,
+          max_force : 666,
+          tot_time : 17,
         }
     });
     return app.Swimmer;
