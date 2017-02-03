@@ -5,18 +5,20 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var _ = require('underscore');
+var exphbs = require('express-handlebars')
 
 var routes = require('./routes/index'); //Route for homepage
 var swimmer = require('./routes/swimmer');
+var workout = require('./routes/workout')
 var id = require('./routes/id');
 var data = require('./routes/data'); //Route for database connection
 var name = require('./routes/name');
 var server = express();
 
 // view engine setup
-//server.set('views', path.join(__dirname, 'views'));
-//server.engine('handlebars', exphbs({defaultLayout: 'main'}));
-//server.set('view engine', 'handlebars'); //Use handlebars for view engine
+server.set('views', path.join(__dirname, 'views'));
+server.engine('handlebars', exphbs({defaultLayout: 'main'}));
+server.set('view engine', 'handlebars'); //Use handlebars for view engine
 
 
 // uncomment after placing your favicon in /public
@@ -31,7 +33,8 @@ server.use(express.static(path.join(__dirname, 'public')));
 server.use('/id', id); //route based on Swimmer ID
 server.use('/data', data); //route to get all the data from the database
 server.use('/name', name); //route based on Swimmer name
-server.use('/swimmer', swimmer)
+server.use('/swimmer', swimmer);
+server.use('/workout', workout);
 
 // catch 404 and forward to error handler
 server.use(function(req, res, next) {

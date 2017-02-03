@@ -7,8 +7,9 @@ define(['backbone', '/../collections/SwimmerCollection', '/../views/SwimmerView'
         initialize: function () {
             console.log('Initialize Roster View');
             this.collection = new app.SwimmerCollection();
-            this.collection.fetch();
+            this.collection.fetch({reset:true});
             this.render();
+            this.listenTo(this.collection, 'reset', this.render );
             this.listenTo(this.collection, 'add', this.renderSwimmer);
         },
 

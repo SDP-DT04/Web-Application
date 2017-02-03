@@ -21,15 +21,29 @@
         </div>
     </form>
 </div>
-
 <script id = "swimmerTemplate" type="text/template">
     <img src="<%= photo %>"/>
     <ul>
         <li><%= rfid_tag %></li>
         <li><%= name %></li>
+        <li><%= workouts %></li>
     </ul>
-
     <button class="delete">Delete</button>
 </script>
+
+<div id="workout"/>
+<script id = "workoutTemplate" type="text/template">
+    <ul>
+        <li><%= rfid_tag %></li>
+        <li><%= date %></li>
+        <li><%= weight %></li>
+        <li><%= tot_time %></li>
+        <li><%= distance %></li>
+        <li><%= coefficients %></li>
+        <li><%= swimmer %></li>
+    </ul>
+</script>
+
+
 </body>
 </html>

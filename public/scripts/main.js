@@ -8,8 +8,8 @@ require.config({
         'handlebars' : '../../node_modules/handlebars/dist/handlebars.runtime.amd',
         'hbs' : 'vendor/require-handlebars-plugin/hbs',
         'chartjs' : 'vendor/chart.js/src/chart',
-        'handlebars' : 'vendor/handlebars/handlebars.amd',
-        'hbs' : 'vendor/require-handlebars-plugin/hbs'
+        'bootstrap' : 'vendor/bootstrap/dist/js/boostrap',
+        'tether': 'vendor/tether/dist/tether'
     },
     hbs: {
         templateExtension: 'handlebars'
@@ -21,13 +21,16 @@ require.config({
         backbone: {
             exports: 'Backbone',
             deps: ['jquery', 'underscore']
+        },
+        bootstrap: {
+            deps: ['jquery', 'tether']
         }
     },
-    deps: ['jquery', 'underscore'],
+    deps: ['jquery', 'underscore']
 
 });
 
-require(['./views/RosterView'], function(RosterView) {
+require(['./views/LogView', './views/RosterView'], function(LogView, RosterView) {
 
     //test = [
     //    {Photo: 'images/nebraska.jpg', Name: 'Nebraska', RFID_Tag: '1'},
@@ -37,6 +40,7 @@ require(['./views/RosterView'], function(RosterView) {
     //    ];
 
     $(function() {
-        new RosterView(); //calls the initialize function defined in RosterView.js
+        new RosterView();
+        new LogView(); //calls the initialize function defined in RosterView.
     });
 });
