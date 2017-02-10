@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var _ = require('underscore');
-var exphbs = require('express-handlebars')
+var exphbs = require('express-handlebars');
 
 var routes = require('./routes/index'); //Route for homepage
 var swimmer = require('./routes/swimmer');

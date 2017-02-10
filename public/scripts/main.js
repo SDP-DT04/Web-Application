@@ -9,7 +9,8 @@ require.config({
         'hbs' : 'vendor/require-handlebars-plugin/hbs',
         'chartjs' : 'vendor/chart.js/src/chart',
         'bootstrap' : 'vendor/bootstrap/dist/js/boostrap',
-        'tether': 'vendor/tether/dist/tether'
+        'tether': 'vendor/tether/dist/tether',
+        'holder': 'vendor/holderjs/holder'
     },
     hbs: {
         templateExtension: 'handlebars'
@@ -30,7 +31,7 @@ require.config({
 
 });
 
-require(['./views/LogView', './views/RosterView'], function(LogView, RosterView) {
+require(['./views/LogView'], function(LogView) {
 
     //test = [
     //    {Photo: 'images/nebraska.jpg', Name: 'Nebraska', RFID_Tag: '1'},
@@ -40,7 +41,7 @@ require(['./views/LogView', './views/RosterView'], function(LogView, RosterView)
     //    ];
 
     $(function() {
-        new RosterView();
+        ///new RosterView();
         new LogView(); //calls the initialize function defined in RosterView.
     });
 });
