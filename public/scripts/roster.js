@@ -31,9 +31,9 @@ require.config({
 
 });
 
-require(['./views/LogView'], function(LogView) {
+require(['./views/RosterView'], function(RosterView) {
 
     $(function() {
-        new LogView(); //calls the initialize function defined in RosterView.
+        new RosterView(); //calls the initialize function defined in RosterView.
     });
 });
