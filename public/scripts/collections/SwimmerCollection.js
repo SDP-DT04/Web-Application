@@ -1,5 +1,6 @@
 var app = app || {};
-define(['backbone', '/../models/Swimmer'], function(Backbone) {
+define(['/../common', '/../models/Swimmer'], function(common) {
+    var Backbone = require('backbone');
     console.log('Swimmer Collection');
     app.SwimmerCollection = Backbone.Collection.extend({
         model: app.Swimmer,

@@ -17,6 +17,12 @@ body {
     border-bottom: 1px solid #eee;
 }
 
+td {
+    text-align: middle; /* center checkbox horizontally */
+    vertical-align: text-bottom; /* center checkbox vertically */
+}
+
+
 /*
  * Top navigation
  * Hide default border to remove 1px line.

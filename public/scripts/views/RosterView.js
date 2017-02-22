@@ -1,6 +1,7 @@
 var app = app || {};
 
-define(['backbone', '/../collections/SwimmerCollection', '/../views/SwimmerView', '/../models/Swimmer'], function(Backbone) {
+define(['/../common', 'backbone', '/../collections/SwimmerCollection', '/../views/SwimmerView', '/../models/Swimmer'], function(common) {
+    var Backbone = require('backbone');
     app.RosterView = Backbone.View.extend({
         el: '#swimmer',
 

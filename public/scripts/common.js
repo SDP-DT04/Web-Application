@@ -5,19 +5,17 @@ require.config({
         'backbone': 'vendor/backbone/backbone',
         'backbone.radio' : 'vendor/backbone.radio/src/backbone.radio',
         'text' : 'vendor/text/text',
-        'handlebars' : '../../node_modules/handlebars/dist/handlebars.runtime.amd',
-        'hbs' : 'vendor/require-handlebars-plugin/hbs',
         'chartjs' : 'vendor/chart.js/src/chart',
         'bootstrap' : 'vendor/bootstrap/dist/js/boostrap',
         'tether': 'vendor/tether/dist/tether',
         'holder': 'vendor/holderjs/holder'
     },
-    hbs: {
-        templateExtension: 'handlebars'
-    },
     shim: {
         underscore: {
             exports: '_'
+        },
+        jquery: {
+            exports: '$'
         },
         backbone: {
             exports: 'Backbone',
@@ -28,12 +26,4 @@ require.config({
         }
     },
     deps: ['jquery', 'underscore']
-
-});
-
-require(['./views/LogView'], function(LogView) {
-
-    $(function() {
-        new LogView(); //calls the initialize function defined in RosterView.
-    });
 });

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../lib/database.js');
-var db_model = require('../workout_dbmodel');
+var db_model = require('../database/workout_dbmodel');
 
 router.get('/', function(req,res) {
     db.workouts.find(function(err,workouts) {

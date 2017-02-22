@@ -1,6 +1,7 @@
 var app = app || {};
 
-define(['backbone', '/../collections/WorkoutCollection', '/../views/WorkoutView', '/../models/Workout'], function(Backbone) {
+define(['/../common', 'backbone', '/../collections/WorkoutCollection', '/../views/WorkoutView', '/../models/Workout'], function(common) {
+    var Backbone = require('backbone');
     app.LogView = Backbone.View.extend({
         el: '#workout',
 
@@ -13,7 +14,7 @@ define(['backbone', '/../collections/WorkoutCollection', '/../views/WorkoutView'
         },
 
         render: function () {
-            console.log('Rendering Log View')
+            console.log('Rendering Log View');
             this.collection.each(function (item) {
                     this.renderWorkout(item);
                 },
@@ -28,6 +29,7 @@ define(['backbone', '/../collections/WorkoutCollection', '/../views/WorkoutView'
             });
             this.$el.append(workoutView.render().el);
         }
+
     });
     return app.LogView;
 });

@@ -1,5 +1,6 @@
 var app = app || {};
-define(['backbone', '/../models/Workout'], function(Backbone) {
+define(['/../common', '/../models/Workout'], function(common) {
+    var Backbone = require('backbone');
     console.log('Workout Collection');
     app.WorkoutCollection = Backbone.Collection.extend({
         model: app.Workout,

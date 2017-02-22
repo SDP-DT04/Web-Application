@@ -3,10 +3,10 @@ module.exports = function(grunt) {
 
     // requirejs compile options
     var compileOptions = {
-        mainConfigFile: 'public/scripts/main.js',
+        mainConfigFile: 'public/scripts/common.js',
         baseUrl: 'public/scripts',
-        include: ['main'],
-        out: 'dist/main.min.js',
+        include: 'common',
+        out: 'dist/common.min.js',
         removeCombined: false,
         findNestedDependencies: true,
 
@@ -43,7 +43,7 @@ module.exports = function(grunt) {
 
         //Testing
         jshint: {
-            all: ['Gruntfile.js', 'server.js', 'lib/*.js', 'routes/*.js', 'public/scripts/views/*.js', 'public/scripts/views/main.js'],
+            all: ['Gruntfile.js', 'server.js', 'lib/*.js', 'routes/*.js', 'public/scripts/views/*.js', 'public/scripts/views/overview.js'],
             server: ['server.js', 'lib/*js', 'routes/*.js'],
             public: ['public/scripts/**/*.js']
         },
@@ -53,9 +53,6 @@ module.exports = function(grunt) {
         clean: {
             dist: {
                 src: ['dist']
-            },
-            css: {
-                src: ['dist/*.css', 'public/stylesheets/*.css']
             },
             js: {
                 src: ['dist/*.js']
@@ -68,36 +65,11 @@ module.exports = function(grunt) {
             }
         },
 
-        less: {
-            development: {
-                options: {
-                    compress: false,  // no minification in dev
-                },
+        uglify: {
+            my_target: {
                 files: {
-                    //compiling base.less into styles.css
-                    "./public/stylesheets/style.css":"./public/stylesheets/base.less"
+                    'dist/common.min.js': ['public/scripts/overview.js']
                 }
-            },
-            production: {
-                options: {
-                    cleancss: true, // clean css
-                    compress: true, // minify css
-                },
-                files: {
-                    //compiling base.less into main.min.css
-                    "./dist/main.min.css": "./public/stylesheets/base.less"
-                }
-            }
-        },
-
-        handlebars: {
-            compile: {
-                options: {
-                    amd: true,
-                    wrapped: true
-                },
-                src: ["./public/views/**/*.handlebars"],
-                dest: "./public/templates/comp/comp.handlebars.js"
             }
         },
 
@@ -126,18 +98,9 @@ module.exports = function(grunt) {
         },
 
         watch: {
-            less: {
-                // Watch all .less files from the styles directory)
-                files: ['public/styles/*.less'],
-                tasks: ['clean:css', 'less'],
-                // Reloads the browser
-                options: {
-                    livereload: true
-                }
-            },
             requirejs: {
-                // Watch only main.js so that we do not constantly recompile the .js files
-                files: ['public/scripts/main.js'],
+                // Watch only overview.js so that we do not constantly recompile the .js files
+                files: ['public/scripts/overview.js'],
                 tasks: ['clean:js', 'requirejs'],
                 // Reloads the browser
                 options: {
@@ -163,13 +126,10 @@ module.exports = function(grunt) {
     grunt.registerTask('init-dev', ['shell:bower', 'comp-clean', 'comp', 'test']);
 
     //compilation
-    grunt.registerTask('comp', ['requirejs', 'less']);
-    grunt.registerTask('comp-clean', ['clean:css', 'clean:js']);
+    grunt.registerTask('comp', ['requirejs']);
+    grunt.registerTask('comp-clean', ['clean:js']);
     grunt.registerTask('comp-requirejs', ['requirejs']);
-    grunt.registerTask('comp-less', ['less']);
-    grunt.registerTask('comp-less-dev', ['less:development']);
-    grunt.registerTask('comp-less-prod', ['less:production']);
-    grunt.registerTask('comp-hbs', ['handlebars']);
+    grunt.registerTask('comp-uglify', ['uglify']);
 
     //testing
     grunt.registerTask('test', ['jshint:all']); //this line will include all testing frameworks

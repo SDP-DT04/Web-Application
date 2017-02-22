@@ -1,6 +1,9 @@
 var app = app || {};
 
-define(['backbone', 'underscore'], function(Backbone, _) {
+define(['../common', 'backbone', 'underscore', 'jquery'], function(common) {
+    var Backbone = require('backbone');
+    var _ = require('underscore');
+    var $ = require('jquery');
     app.SwimmerView = Backbone.View.extend({
         className: 'swimmerContainer',
         template: _.template($('#swimmerTemplate').html()),

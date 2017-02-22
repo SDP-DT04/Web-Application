@@ -13,6 +13,7 @@ var workout = require('./routes/workout')
 var id = require('./routes/id');
 var roster = require('./routes/roster'); //Route for database connection
 var name = require('./routes/name');
+var chart = require('./routes/chart');
 var server = express();
 
 // view engine setup
@@ -36,6 +37,7 @@ server.use('/name', name); //route based on Swimmer name
 server.use('/swimmer', swimmer);
 server.use('/workout', workout);
 server.use('/roster', roster);
+server.use('/chart', chart);
 
 // catch 404 and forward to error handler
 server.use(function(req, res, next) {
