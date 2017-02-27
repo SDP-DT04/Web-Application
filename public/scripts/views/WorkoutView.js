@@ -12,8 +12,8 @@ define(['/../common','vendor/chart.js/dist/Chart.bundle.min', 'backbone'], funct
         checked: function() {
             console.log("events handler for " + this.el.innerHTML);
             //add javascript call to draw chart
-            $('#plot').change(function() {
-                if($(this).is(':checked')) {
+            $(':checkbox').change(function() {
+                if (this.checked) {
                     console.log('checked');
                     var ctx = document.getElementById('myChart').getContext('2d');
                     var myChart = new Chart(ctx, {
@@ -32,13 +32,12 @@ define(['/../common','vendor/chart.js/dist/Chart.bundle.min', 'backbone'], funct
                         }
                     });
                 }
-                if(!($(this).is(':checked'))) {
+                if (!this.checked) {
                     console.log('uncheck');
                     $('#myChart').remove();
                     $('#chartHolder').append('<canvas id="myChart"></canvas>');
                 }
-            });
-
+            })
         },
         render: function () {
             console.log('Inside Workout View');
