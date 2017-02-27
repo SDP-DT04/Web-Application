@@ -4,7 +4,7 @@ define(['/../common', '/../models/Workout'], function(common) {
     console.log('Workout Collection');
     app.WorkoutCollection = Backbone.Collection.extend({
         model: app.Workout,
-        url: '/workout'
+        url: '/recent'
     });
     return app.WorkoutCollection;
 });

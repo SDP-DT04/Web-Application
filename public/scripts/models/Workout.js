@@ -10,7 +10,7 @@ define(['../common', 'backbone'], function(common) {
             weight: '0',
             tot_time: '0',
             distance: '0',
-            coefficients: '[]',
+            coefficients: '[]'
         }
     });
     return app.Workout;
