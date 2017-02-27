@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var workout = new mongoose.Schema({
     rfid_tag: String,
     date: String,
+    dateString: String,
     weight: String,
     tot_time: String,
     distance: String,

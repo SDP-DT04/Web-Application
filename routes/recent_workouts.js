@@ -29,6 +29,7 @@ router.post('/', function(req,res) {
     var workout = new db_model({
         rfid_tag: req.body.rfid_tag,
         date: req.body.date,
+        dateString: req.body.dateString,
         weight: req.body.weight,
         tot_time: req.body.tot_time,
         distance: req.body.distance,
@@ -47,6 +48,7 @@ router.put('/:id', function(req, res) {
     db.recent_workouts.findOne({_id: db.ObjectId(req.params.id)}, function(err, workout) {
         workout.rfid_tag = req.body.rfid_tag;
         workout.date = req.body.date;
+        workout.dateString = req.body.dateString;
         workout.tot_time = req.body.tot_time;
         workout.distance = req.body.distance;
         workout.coefficients = req.body.coefficients;

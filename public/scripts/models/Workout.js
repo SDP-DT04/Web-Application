@@ -7,6 +7,7 @@ define(['../common', 'backbone'], function(common) {
         defaults: {
             rfid_tag: '0',
             date: '0',
+            dateString: '',
             weight: '0',
             tot_time: '0',
             distance: '0',
