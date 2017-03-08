@@ -1,6 +1,6 @@
 var app = app || {};
 
-define(['/../common','vendor/chart.js/dist/Chart.bundle.min', 'backbone'], function(common, Chart) {
+define(['/../common','./ChartView', 'backbone'], function(common, ChartView) {
     var Backbone = require('backbone');
     app.WorkoutView = Backbone.View.extend({
         className: 'workoutContainer',
@@ -14,23 +14,9 @@ define(['/../common','vendor/chart.js/dist/Chart.bundle.min', 'backbone'], funct
             //add javascript call to draw chart
             $(':checkbox').change(function() {
                 if (this.checked) {
-                    console.log('checked');
-                    var ctx = document.getElementById('myChart').getContext('2d');
-                    var myChart = new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-                            datasets: [{
-                                label: 'apples',
-                                data: [12, 19, 3, 17, 6, 3, 7],
-                                backgroundColor: "rgba(153,255,51,0.4)"
-                            }, {
-                                label: 'oranges',
-                                data: [2, 29, 5, 5, 2, 3, 10],
-                                backgroundColor: "rgba(255,153,0,0.4)"
-                            }]
-                        }
-                    });
+                    $(function() {
+                        new ChartView();
+                    })
                 }
                 if (!this.checked) {
                     console.log('uncheck');

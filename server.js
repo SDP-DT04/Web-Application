@@ -15,6 +15,8 @@ var roster = require('./routes/roster'); //Route for database connection
 var name = require('./routes/name');
 var chart = require('./routes/chart');
 var recent = require('./routes/recent_workouts');
+var data_export = require('./routes/export');
+var get_data = require('./routes/get_data')
 var server = express();
 
 // view engine setup
@@ -40,6 +42,8 @@ server.use('/workout', workout);
 server.use('/roster', roster);
 server.use('/chart', chart);
 server.use('/recent', recent);
+server.use('/export', data_export);
+server.use('/get_data', get_data);
 
 // catch 404 and forward to error handler
 server.use(function(req, res, next) {

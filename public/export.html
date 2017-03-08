@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,13 +19,12 @@
 
 </head>
 <body>
-<script data-main="scripts/view_swimmers.js" src="scripts/vendor/requirejs/require.js"></script>
+<script data-main="scripts/overview.js" src="scripts/vendor/requirejs/require.js"></script>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -34,14 +34,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li id="Dashboard"><a href="#">Dashboard</a></li>
+                <li id = "Dashboard"><a href="#">Dashboard</a></li>
                 <li><a href="#">Settings</a></li>
                 <li><a href="#">Profile</a></li>
                 <li><a href="#">Help</a></li>
             </ul>
-            <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Search...">
-            </form>
         </div>
     </div>
 </nav>
@@ -50,34 +47,46 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li><a href="/">Overview </a></li>
+                <li><a href="/">Overview <span class="sr-only">(current)</span></a></li>
                 <li><a href="#">Reports</a></li>
                 <li><a href="/chart">Analytics</a></li>
-                <li><a href="/export">Export Data</a></li>
+                <li class="active"><a href="#">Export Data</a></li>
             </ul>
-            <ul class="nav nav-sidebar">
-                <li class="active"><a href="/roster">View Swimmers <span class="sr-only">(current)</span></a></a></li>
+            <ul class="nav nav-sidebar" id = "swimmer">
+                <li><a href="/roster">View Swimmers</a></li>
             </ul>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="swimmer">
-
-            <h1 class="page-header">Application Dashboard</h1>
-            <div class="row placeholders">
-            </div>
-        </div>
-        <div class="row">
-            <script id="swimmerTemplate" type="text/template">
-                <div class="col-md-2">
-                    <div class="thumbnail">
-                        <img src="<%= photo %>" class="img-responsive" a href="/"/>
-                        <div class="caption">
-                            <p><%= name %></p>
-                        </div>
-                    </div>
-                </div>
-            </script>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Data Exportation Tool</h1>
+            <form action="/get_data">
+                First name:<br>
+                <input type="text" name="firstname" value="Allison"><br>
+                Last name:<br>
+                <input type="text" name="lastname" value="Teske"><br><br>
+                <input type="submit" value="Submit">
+            </form>
         </div>
     </div>
 </div>
+</div>
 </body>
 
+<!--<form id="addSwimmer" action="#">-->
+<!--<div>-->
+<!--<label for="photo">Photo: </label><input id="photo" type="file" />-->
+<!--<label for="rfid_tag">RFID_Tag: </label><input id="rfid_tag" type="text" />-->
+<!--<label for="name">Name: </label><input id="name" type="text"/>-->
+<!--<button id="add">Add</button>-->
+<!--</div>-->
+<!--</form>-->
+<!--<script id = "swimmerTemplate" type="text/template">-->
+<!--<img src="<%= photo %>"/>-->
+<!--<ul>-->
+<!--<li><%= rfid_tag %></li>-->
+<!--<li><%= name %></li>-->
+<!--<li><%= workouts %></li>-->
+<!--</ul>-->
+<!--<button class="delete">Delete</button>-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->

@@ -11,6 +11,7 @@ define(['/../common', 'backbone', '/../collections/WorkoutCollection', '/../view
             this.collection.fetch({reset:true});
             this.render();
             this.listenTo(this.collection, 'reset', this.render );
+            this.listenTo(this.collection, 'plot', this.renderPlot)
         },
 
         render: function () {
@@ -28,6 +29,10 @@ define(['/../common', 'backbone', '/../collections/WorkoutCollection', '/../view
                 model: item
             });
             this.$el.append(workoutView.render().el);
+        },
+
+        renderPlot: function() {
+            console.log('plotting');
         }
 
     });
