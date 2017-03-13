@@ -1,7 +1,8 @@
 var app = app || {};
 
-define(['/../common','./ChartView', 'backbone'], function(common, ChartView) {
+define(['/../common','./ChartView', 'backbone', 'underscore'], function(common, ChartView) {
     var Backbone = require('backbone');
+    var _ = require('underscore');
     app.WorkoutView = Backbone.View.extend({
         className: 'workoutContainer',
         tagName: 'tr',

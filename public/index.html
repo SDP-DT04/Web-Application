@@ -60,7 +60,7 @@
             <h1 class="page-header">Application Dashboard</h1>
             <div id="default"/>
             <h2 class="sub-header">Workouts</h2>
-                    <table class="table table-striped" id = "workout">
+                    <table class="table table-striped">
                     <thead>
                     <tr>
                         <th>Date</th>
@@ -70,7 +70,7 @@
                         <th>Weight</th>
                     </tr>
                     </thead>
-                        <tbody>
+                        <tbody id = "workout">
                             <script id = "workoutTemplate" type="text/template">
                                 <td><%= dateString %></td>
                                 <td><%= swimmer%></td>
