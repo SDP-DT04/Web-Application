@@ -4,22 +4,35 @@ var db = require('../lib/database.js');
 var db_model = require('../database/workout_dbmodel');
 var path = require('path');
 var exec = require('child_process').exec;
+var sanitize = require('mongo-sanitize');
 
 router.get('/', function(req,res) {
 
-    var queryName = req.query['firstname'] + " " + req.query['lastname'];
-    var fileName = req.query['firstname'] + req.query['lastname'];
-    var startDate = (new Date(2017,2,15)).toISOString(); //think about how to translate date from form into these inputs
-    var endDate = req.query['enddate'];
-    console.log(startDate);
-    db.swimmers.findOne({'name': queryName}, function(err, swimmer) {
-        if(!err) {
-            console.log(swimmer._id);
-            db.workouts.find({swimmer: (swimmer._id)}, function (err, workout) {
+    var firstname = sanitize(req.query['firstname']);
+    var lastname = sanitize(req.query['lastname']);
+    var startdate = sanitize(req.query['startdate']);
+    var enddate = sanitize(req.query['enddate']);
+    var oneday = 1000 * 3600 * 24 * 3;
+
+    var queryName = firstname + " " + lastname;
+    var fileName = firstname + lastname;
+    startdate = (new Date(startdate)).toISOString();
+    enddate = (new Date(enddate)).toISOString();
+
+
+    //console.log(startdate.getTime()+oneday);
+    // if (startdate > enddate) {
+    //     //this is an invalid date range, alert the user accordingly
+    // }
+
+        db.swimmers.findOne({'name': queryName}, function(err, swimmer) {
+            if(!err) {
+                console.log(swimmer._id);
+                db.workouts.find({swimmer: (swimmer._id)}, function (err, workout) {
                     if (!err) {
                         console.log(workout);
-                        console.log('mongoexport --db test --collection workouts --query \'{swimmer: ObjectId(\"' + swimmer._id +'\"), date: {$lte: ISODate("' + startDate + '")}}\' --out ' + fileName + '.csv');
-                        exec('mongoexport --db test --collection workouts --query \'{swimmer: ObjectId(\"' + swimmer._id +'\"), date: {$lte: ISODate("' + startDate + '")}}\' --out ' + fileName + '.csv' , function(error, stdout, stderr) {
+                        console.log('mongoexport --db test --collection workouts --query \'{swimmer: ObjectId(\"' + swimmer._id +'\"), date: {$gte: ISODate("' + startdate + '"), $lte: ISODate("' + enddate + '")}}\' --out ' + fileName + '.csv');
+                        exec('mongoexport --db test --collection workouts --query \'{swimmer: ObjectId(\"' + swimmer._id +'\"), date: {$gte: ISODate("' + startdate + '"), $lte: ISODate("' + enddate + '")}}\' --out ' + fileName + '.csv' , function(error, stdout, stderr) {
                             if (error) {
                                 console.log(error);
                                 return;
@@ -34,13 +47,11 @@ router.get('/', function(req,res) {
                         return console.log(err);
                     }
                 });
-        }
-        else {
-            return console.log(err);
-        }
-    });
-    //Add routes based on swimmer name
-
+            }
+            else {
+                return console.log(err);
+            }
+        });
 });
 
 module.exports = router;
