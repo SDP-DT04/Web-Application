@@ -36,7 +36,6 @@
             <ul class="nav navbar-nav navbar-right">
                 <li id = "Dashboard"><a href="#">Dashboard</a></li>
                 <li><a href="#">Settings</a></li>
-                <li><a href="#">Profile</a></li>
                 <li><a href="#">Help</a></li>
             </ul>
         </div>
@@ -48,12 +47,12 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="/">Overview <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Reports</a></li>
+                <li><a href="/roster">View Swimmers</a></li>
                 <li><a href="/chart">Analytics</a></li>
                 <li><a href="/export">Export Data</a></li>
             </ul>
-            <ul class="nav nav-sidebar" id = "swimmer">
-                <li><a href="/roster">View Swimmers</a></li>
+            <ul class="nav nav-sidebar">
+                <li><a href="/add">Add Swimmer</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -85,23 +84,3 @@
     </div>
 </div>
 </body>
-
-<!--<form id="addSwimmer" action="#">-->
-<!--<div>-->
-<!--<label for="photo">Photo: </label><input id="photo" type="file" />-->
-<!--<label for="rfid_tag">RFID_Tag: </label><input id="rfid_tag" type="text" />-->
-<!--<label for="name">Name: </label><input id="name" type="text"/>-->
-<!--<button id="add">Add</button>-->
-<!--</div>-->
-<!--</form>-->
-<!--<script id = "swimmerTemplate" type="text/template">-->
-    <!--<img src="<%= photo %>"/>-->
-    <!--<ul>-->
-        <!--<li><%= rfid_tag %></li>-->
-        <!--<li><%= name %></li>-->
-        <!--<li><%= workouts %></li>-->
-    <!--</ul>-->
-    <!--<button class="delete">Delete</button>-->
-<!--</script>-->
-<!--</body>-->
-<!--</html>-->

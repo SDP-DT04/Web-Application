@@ -4,7 +4,7 @@ var path = require('path');
 
 router.get('/', function(req,res) {
     console.log('here');
-    res.sendFile(path.join(__dirname, '../public/',    'export.html'))
+    res.sendFile(path.join(__dirname, '../public/', 'add.html'))
 });
 
 module.exports = router;

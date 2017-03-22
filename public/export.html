@@ -36,7 +36,6 @@
             <ul class="nav navbar-nav navbar-right">
                 <li id = "Dashboard"><a href="#">Dashboard</a></li>
                 <li><a href="#">Settings</a></li>
-                <li><a href="#">Profile</a></li>
                 <li><a href="#">Help</a></li>
             </ul>
         </div>
@@ -48,21 +47,21 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li><a href="/">Overview <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Reports</a></li>
+                <li><a href="/roster">View Swimmers</a></li>
                 <li><a href="/chart">Analytics</a></li>
-                <li class="active"><a href="#">Export Data</a></li>
+                <li class="active"><a href="/export">Export Data</a></li>
             </ul>
             <ul class="nav nav-sidebar" id = "swimmer">
-                <li><a href="/roster">View Swimmers</a></li>
+                <li><a href="/add">Add Swimmer</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Data Exportation Tool</h1>
             <form action="/get_data">
                 First name:<br>
-                <input type="text" name="firstname" value="Allison"><br>
+                <input type="text" name="firstname"><br>
                 Last name:<br>
-                <input type="text" name="lastname" value="Teske"><br><br>
+                <input type="text" name="lastname"><br><br>
                 Start Date:
                 <input type="date" name="startdate"><br><br>
                 End Date:
