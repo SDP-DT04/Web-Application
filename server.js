@@ -56,27 +56,64 @@ server.use('/add', add);
 
 server.post('/add_swimmer', function(req,res) {
 
-    if (!req.files)
-        return res.status(400).send('No files were uploaded.');
+    //Some things to consider adding
+    //Feedback to the user if a request is successful or not
+    //Checking for a valid RFID tag that is not assigned to another swimmer
+    //Checking variable instantiations, are they efficient? Are there any flaws?
 
-    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-    var sampleFile = req.files.photo;
-    var swimmer = new db_model({
-        photo: "images/"+sanitize(req.files.photo.name),
-        rfid_tag: sanitize(req.body.rfid_tag),
-        name: sanitize(req.body.firstname) + " " + sanitize(req.body.lastname)
-    });
-    // Use the mv() method to place the file somewhere on your server
-    sampleFile.mv('./public/images/'+req.files.photo.name, function(err) {
-        if (err)
-            return res.status(500).send(err);
+    var queryName = sanitize(req.body.firstname) + " " + sanitize(req.body.lastname);
+    if (req.files.photo) {
+        var sampleFile = req.files.photo;
+        var photoPath = "images/"+sanitize(req.files.photo.name);
+    }
+    if (req.body.rfid_tag) {
+        var rfidTag = sanitize(req.body.rfid_tag);
+    }
 
-        console.log('Photo uploaded!');
-    })
-
-    db.swimmers.save(swimmer);
-    res.sendFile(path.join(__dirname, '/public/',    'add.html'))
-    console.log('new swimmer created');
+    db.swimmers.findOne({'name': queryName}, function (err, swimmer) {
+        console.log(swimmer.name);
+        if (!swimmer) {
+            console.log('creating new swimmer');
+            // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+            var swimmer = new db_model({
+                photo: photoPath,
+                rfid_tag: rfidTag,
+                name: queryName
+            });
+            // Use the mv() method to place the file somewhere on your server
+            if (req.files) {
+                sampleFile.mv('./public/images/' + req.files.photo.name, function (err) {
+                    if (err)
+                        return res.status(500).send(err);
+                    console.log('Photo uploaded!');
+                })
+            }
+            else {
+                //return res.status(400).send('No files were uploaded.');
+                }
+            db.swimmers.save(swimmer);
+            res.sendFile(path.join(__dirname, '/public/',    'add.html'))
+            console.log('new swimmer created');
+            }
+        else {
+            if (req.body.rfid_tag) {
+                console.log('changing RFID Tag');
+                swimmer.rfid_tag = rfidTag;
+            }
+            if (req.files.photo) {
+                console.log('changing photo');
+                swimmer.photo = photoPath;
+                sampleFile.mv('./public/images/'+req.files.photo.name, function(err) {
+                    if (err)
+                        return res.status(500).send(err);
+                    console.log('Photo uploaded!');
+                })
+            }
+            db.swimmers.save(swimmer);
+            res.sendFile(path.join(__dirname, '/public/',    'add.html'))
+            console.log('Edits successfully made');
+        }
+        });
 
 });
 

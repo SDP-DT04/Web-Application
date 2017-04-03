@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../lib/database.js');
-var db_model = require('../database/workout_dbmodel');
 var path = require('path');
 var exec = require('child_process').exec;
 var sanitize = require('mongo-sanitize');
