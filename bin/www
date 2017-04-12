@@ -15,7 +15,7 @@ var create_position = require('../lib/data-processor');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '4000');
 app.set('port', port);
 
 /**
@@ -42,13 +42,14 @@ io.on('connection', function (socket) {
         console.log('making chart');
         console.log(data.name);
         console.log(data.date);
-        db.recent_workouts.findOne('$and'[{'date': data.date}, {_id: db.ObjectId(data.name.toString())}], function(err, workout) {
+        db.recent_workouts.findOne({$and : [{'dateString': data.date.toString()}, {'swimmer': data.name.toString()}]}, function(err, workout) {
             if(!err) {
                 console.log(workout.tot_time);
                 console.log(workout.coefficients);
-                var position = create_position.expand_postion(0, workout.tot_time, 1000, workout.coefficients);
-                console.log(position);
-                socket.emit('position', {position: position});
+                var result = create_position.expand_postion(0, workout.tot_time, 1, workout.coefficients);
+                console.log('position ' + result.position);
+                console.log('time ' + result.time);
+                socket.emit('position', {result: result});
             }
             else {
                 console.log('error')
