@@ -25,7 +25,9 @@
     "handlebars": "^4.0.5",
     "requirejs-handlebars": "^0.1.1",
     "text": "^2.0.15",
-    "require-handlebars-plugin": "^1.0.0"
+    "require-handlebars-plugin": "^1.0.0",
+    "socket.io": "^1.7.3",
+    "socket.io-client": "^1.7.2"
   },
   "devDependencies": {
     "requirejs-handlebars": "^0.1.1"

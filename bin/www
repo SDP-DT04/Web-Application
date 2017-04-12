@@ -7,7 +7,9 @@
 var app = require('../server');
 var debug = require('debug')('Web-Application:server');
 var http = require('http');
-var xbee = require('../lib/xbee.js')
+var xbee = require('../lib/xbee.js');
+var db = require('../lib/database.js');
+var create_position = require('../lib/data-processor');
 
 /**
  * Get port from environment and store in Express.
@@ -21,6 +23,8 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+var io = require('socket.io')(server);
+
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -31,6 +35,28 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 xbee.start();
+
+io.on('connection', function (socket) {
+    socket.emit('connection', {hello: 'world'});
+    socket.on('make chart', function (data) {
+        console.log('making chart');
+        console.log(data.name);
+        console.log(data.date);
+        db.recent_workouts.findOne('$and'[{'date': data.date}, {_id: db.ObjectId(data.name.toString())}], function(err, workout) {
+            if(!err) {
+                console.log(workout.tot_time);
+                console.log(workout.coefficients);
+                var position = create_position.expand_postion(0, workout.tot_time, 1000, workout.coefficients);
+                console.log(position);
+                socket.emit('position', {position: position});
+            }
+            else {
+                console.log('error')
+                console.log(err);
+            }
+        });
+    });
+});
 
 /**
  * Normalize a port into a number, string, or false.

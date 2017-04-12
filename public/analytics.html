@@ -19,6 +19,7 @@
 </head>
 <body>
 <script data-main="scripts/analytics.js" src="scripts/vendor/requirejs/require.js"></script>
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -39,7 +40,6 @@
         </div>
     </div>
 </nav>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
@@ -55,7 +55,7 @@
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Data Analytics</h1>
-            <div id="chartHolder"><canvas id="myChart"></canvas></div>
+            <canvas id="myChart" width="400" height="400"></canvas>
             <table class="table table-striped" id = "workout">
                 <thead>
                 <tr>
@@ -69,15 +69,27 @@
                 </thead>
                 <tbody>
                 <script id = "workoutTemplate" type="text/template">
-                    <td><%= dateString %></td>
-                    <td id="date"><%= swimmer%></td>
+                    <td class = "dateString"><%= date %></td>
+                    <td class = "swimmer"><%= swimmer%></td>
                     <td><%= tot_time%></td>
                     <td><%= distance%></td>
                     <td><%= weight%></td>
-                    <td><input type="checkbox" id="plot"></td>
+                    <td><input type="checkbox" id = "plot"></td>
                 </script>
                 </tbody>
             </table>
+            <!--<h3 class="page-header">Chart Creation Tool</h3>-->
+            <!--<form action="/make_chart">-->
+                <!--First name:<br>-->
+                <!--<input type="text" name="firstname"><br>-->
+                <!--Last name:<br>-->
+                <!--<input type="text" name="lastname"><br><br>-->
+                <!--Start Date:-->
+                <!--<input type="date" name="startdate"><br><br>-->
+                <!--End Date:-->
+                <!--<input type="date" name ="enddate"><br><br>-->
+                <!--<input type="submit" value="Submit">-->
+            <!--</form>-->
         </div>
     </div>
 </div>

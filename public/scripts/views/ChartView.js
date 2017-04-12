@@ -12,8 +12,8 @@ define(['/../common','vendor/chart.js/dist/Chart.bundle.min', '/../collections/C
             render: function () {
                 console.log('Inside Chart View');
                 var ctx = document.getElementById('myChart').getContext('2d');
-                var date = document.getElementById('date').innerHTML;
-                console.log(date);
+                //var date = document.getElementById('date').innerHTML;
+                //console.log(date);
                 var myChart = new Chart(ctx, {
                     type: 'line',
                     data: {

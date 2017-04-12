@@ -5,10 +5,9 @@ require.config({
         'backbone': 'vendor/backbone/backbone',
         'backbone.radio' : 'vendor/backbone.radio/src/backbone.radio',
         'text' : 'vendor/text/text',
-        'chartjs' : 'vendor/chart.js/src/chart',
         'bootstrap' : 'vendor/bootstrap/dist/js/boostrap',
         'tether': 'vendor/tether/dist/tether',
-        'holder': 'vendor/holderjs/holder'
+        'holder': 'vendor/holderjs/holder',
     },
     shim: {
         underscore: {

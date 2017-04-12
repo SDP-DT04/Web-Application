@@ -14,7 +14,7 @@ var sanitize = require('mongo-sanitize');
 
 var routes = require('./routes/index'); //Route for homepage
 var swimmer = require('./routes/swimmer');
-var workout = require('./routes/workout')
+var workout = require('./routes/workout');
 var id = require('./routes/id');
 var roster = require('./routes/roster'); //Route for database connection
 var name = require('./routes/name');
@@ -23,6 +23,7 @@ var recent = require('./routes/recent_workouts');
 var data_export = require('./routes/export');
 var get_data = require('./routes/get_data');
 var add = require('./routes/add');
+var make_chart = require('./routes/make_chart');
 var server = express();
 
 
@@ -53,6 +54,7 @@ server.use('/recent', recent);
 server.use('/export', data_export);
 server.use('/get_data', get_data);
 server.use('/add', add);
+server.use('/make_chart', make_chart);
 
 server.post('/add_swimmer', function(req,res) {
 

@@ -5,7 +5,7 @@ require(['./common', './views/LogView'], function(common, LogView) {
             app.collection.fetch().done(function(){
                 app.renderUpdate();  //Investigate DOM element removal/automatic updates
             });
-        }, 5000);
+        }, 10000000);
     });
 });
 
