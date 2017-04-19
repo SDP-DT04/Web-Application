@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,10 +16,11 @@
 
     <!-- Custom styles for this template -->
     <link href="stylesheets/dashboard.css" rel="stylesheet">
-
+    <link href="stylesheets/toastr.css" rel="stylesheet">
 </head>
 <body>
-<script data-main="scripts/analytics.js" src="scripts/vendor/requirejs/require.js"></script>
+<script src = "scripts/vendor/jquery/dist/jquery.js"></script>
+<script src = "scripts/vendor/toastr/toastr.js"></script>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
@@ -40,13 +42,14 @@
         </div>
     </div>
 </nav>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li><a href="/">Overview <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="/">Overview <span class="sr-only">(current)</span></a></li>
                 <li><a href="/roster">View Swimmers</a></li>
-                <li class="active"><a href="/chart">Analytics</a></li>
+                <li><a href="/chart">Analytics</a></li>
                 <li><a href="/export">Export Data</a></li>
             </ul>
             <ul class="nav nav-sidebar" id = "swimmer">
@@ -54,31 +57,29 @@
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Data Analytics</h1>
-            <canvas id="myChart"></canvas>
-            <table class="table table-striped" id = "workout">
-                <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Swimmer</th>
-                    <th>Time</th>
-                    <th>Distance</th>
-                    <th>Weight</th>
-                    <th>Plot</th>
-                </tr>
-                </thead>
-                <tbody>
-                <script id = "workoutTemplate" type="text/template">
-                    <td class = "dateString"><%= dateString %></td>
-                    <td class = "swimmer"><%= swimmer%></td>
-                    <td><%= tot_time%></td>
-                    <td><%= distance%></td>
-                    <td><%= weight%></td>
-                    <td><input type="radio" name = "plot" id = "plot"></td>
-                </script>
-                </tbody>
-            </table>
+            <h1 class="page-header">Application Dashboard</h1>
+            <div id="default"/>
+            <form id="addSwimmer" action="/add_swimmer" method = "post" enctype="multipart/form-data">
+                <div>
+                    First name:<br>
+                    <input type="text" name="firstname"><br>
+                    Last name:<br>
+                    <input type="text" name="lastname"><br>
+                    RFID_Tag: <br>
+                    <input type="text" name="rfid_tag"><br>
+                    Photo: <br>
+                    <input type="file" name="photo" id = "photo"><br>
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+<script type = "text/javascript">
+    $(document).ready(function() {
+        toastr.info('Swimmer data updated');
+    })
+</script>
+
 </body>

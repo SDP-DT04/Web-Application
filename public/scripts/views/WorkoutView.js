@@ -16,7 +16,6 @@ define(['/../common','./ChartView', '../../socket.io/socket.io', 'backbone', 'un
                 label: 'position',
                 data: []
             }]
-
         }
     });
 

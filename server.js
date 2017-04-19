@@ -57,12 +57,7 @@ server.use('/add', add);
 server.use('/make_chart', make_chart);
 
 server.post('/add_swimmer', function(req,res) {
-
-    //Some things to consider adding
-    //Feedback to the user if a request is successful or not
-    //Checking for a valid RFID tag that is not assigned to another swimmer
-    //Checking variable instantiations, are they efficient? Are there any flaws?
-
+    //The sanitize function is used here to protect our database from attacks
     var queryName = sanitize(req.body.firstname) + " " + sanitize(req.body.lastname);
     if (req.files.photo) {
         var sampleFile = req.files.photo;
@@ -73,50 +68,44 @@ server.post('/add_swimmer', function(req,res) {
     }
 
     db.swimmers.findOne({'name': queryName}, function (err, swimmer) {
-        //console.log(swimmer.name);
-        if (!swimmer) {
-            console.log('creating new swimmer');
-            // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-            var swimmer = new db_model({
+        if (!swimmer) { //add a new swimmer if they are not in the database
+            //console.log('creating new swimmer');
+            var new_swimmer = new db_model({
                 photo: photoPath,
                 rfid_tag: rfidTag,
                 name: queryName
             });
-            // Use the mv() method to place the file somewhere on your server
             if (req.files) {
                 sampleFile.mv('./public/images/' + req.files.photo.name, function (err) {
                     if (err)
-                        return res.status(500).send(err);
-                    console.log('Photo uploaded!');
-                })
+                        return res.status(500).sendFile(path.join(__dirname, '/public/', 'add_fail.html'));
+                    //console.log('Photo uploaded!');
+                });
+                db.swimmers.save(new_swimmer);
+                res.status(200).sendFile(path.join(__dirname, '/public/', 'add_success.html'))
+                //console.log('new swimmer created');
             }
-            else {
-                //return res.status(400).send('No files were uploaded.');
-                }
-            db.swimmers.save(swimmer);
-            res.sendFile(path.join(__dirname, '/public/',    'add.html'))
-            console.log('new swimmer created');
-            }
-        else {
-            if (req.body.rfid_tag) {
-                console.log('changing RFID Tag');
-                swimmer.rfid_tag = rfidTag;
-            }
-            if (req.files.photo) {
-                console.log('changing photo');
-                swimmer.photo = photoPath;
-                sampleFile.mv('./public/images/'+req.files.photo.name, function(err) {
-                    if (err)
-                        return res.status(500).send(err);
-                    console.log('Photo uploaded!');
-                })
-            }
-            db.swimmers.save(swimmer);
-            res.sendFile(path.join(__dirname, '/public/',    'add.html'));
-            console.log('Edits successfully made');
         }
-        });
-
+            else { //Update the existing swimmers data
+                console.log('updating');
+                if (req.body.rfid_tag) {
+                    console.log('changing RFID Tag');
+                    swimmer.rfid_tag = rfidTag;
+                }
+                if (req.files.photo) {
+                    //console.log('changing photo');
+                    swimmer.photo = photoPath;
+                    sampleFile.mv('./public/images/' + req.files.photo.name, function (err) {
+                        if (err)
+                            return res.status(500).sendFile(path.join(__dirname, '/public/', 'add_fail.html'));
+                        //console.log('Photo uploaded!');
+                    })
+                }
+                db.swimmers.save(swimmer);
+                res.status(200).sendFile(path.join(__dirname, '/public/', 'add_success_edit.html'));
+                //console.log('Edits successfully made');
+            }
+    });
 });
 
 
