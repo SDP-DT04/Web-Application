@@ -19,10 +19,13 @@
 
 </head>
 <body>
-<script data-main="scripts/overview.js" src="scripts/vendor/requirejs/require.js"></script>
-
-
-
+<!--<script data-main="scripts/overview.js" src="scripts/vendor/requirejs/require.js"></script>-->
+<script>
+    var req = new XMLHttpRequest();
+    var headers = req.getAllResponseHeaders().toLowerCase();
+    alert(headers);
+    console.log(headers);
+</script>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
@@ -78,15 +81,3 @@
     </div>
 </div>
 </body>
-
-<!--<script id = "swimmerTemplate" type="text/template">-->
-<!--<img src="<%= photo %>"/>-->
-<!--<ul>-->
-<!--<li><%= rfid_tag %></li>-->
-<!--<li><%= name %></li>-->
-<!--<li><%= workouts %></li>-->
-<!--</ul>-->
-<!--<button class="delete">Delete</button>-->
-<!--</script>-->
-<!--</body>-->
-<!--</html>-->

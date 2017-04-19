@@ -73,7 +73,7 @@ server.post('/add_swimmer', function(req,res) {
     }
 
     db.swimmers.findOne({'name': queryName}, function (err, swimmer) {
-        console.log(swimmer.name);
+        //console.log(swimmer.name);
         if (!swimmer) {
             console.log('creating new swimmer');
             // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
@@ -112,7 +112,7 @@ server.post('/add_swimmer', function(req,res) {
                 })
             }
             db.swimmers.save(swimmer);
-            res.sendFile(path.join(__dirname, '/public/',    'add.html'))
+            res.sendFile(path.join(__dirname, '/public/',    'add.html'));
             console.log('Edits successfully made');
         }
         });
