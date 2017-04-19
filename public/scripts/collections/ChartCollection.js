@@ -1,9 +1,9 @@
 var app = app || {};
-define(['/../common', '/../models/Chart'], function(common) {
+define(['/../common', '/../models/Workout'], function(common) {
     var Backbone = require('backbone');
     console.log('Chart Collection');
     app.ChartCollection = Backbone.Collection.extend({
-        model: app.Chart,
+        model: app.Workout,
         url: '/recent',
     });
     return app.ChartCollection;

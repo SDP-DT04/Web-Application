@@ -1,7 +1,5 @@
-require(['./common', './views/LogView'], function(common, LogView) {
+require(['./common', './views/AnalyticsView'], function(common, AnalyticsView) {
     $(function() {
-        var app = new LogView();
+        var app = new AnalyticsView();
     })
-
-
 });
