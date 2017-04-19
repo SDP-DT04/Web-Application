@@ -25,6 +25,7 @@ var get_data = require('./routes/get_data');
 var add = require('./routes/add');
 var make_chart = require('./routes/make_chart');
 var del = require('./routes/delete');
+var help = require('./routes/help');
 var server = express();
 
 
@@ -57,36 +58,40 @@ server.use('/get_data', get_data);
 server.use('/add', add);
 server.use('/make_chart', make_chart);
 server.use('/delete', del);
+server.use('/help', help);
 
 server.post('/add_swimmer', function(req,res) {
     //The sanitize function is used here to protect our database from attacks
     var queryName = sanitize(req.body.firstname) + " " + sanitize(req.body.lastname);
+    var photoPath = "images/Z.png";
+    var rfidTag = 0;
     if (req.files.photo) {
         var sampleFile = req.files.photo;
-        var photoPath = "images/"+sanitize(req.files.photo.name);
+        photoPath = "images/"+sanitize(req.files.photo.name);
     }
     if (req.body.rfid_tag) {
-        var rfidTag = sanitize(req.body.rfid_tag);
+        rfidTag = sanitize(req.body.rfid_tag);
     }
 
     db.swimmers.findOne({'name': queryName}, function (err, swimmer) {
         if (!swimmer) { //add a new swimmer if they are not in the database
-            //console.log('creating new swimmer');
+            console.log('creating new swimmer');
             var new_swimmer = new db_model({
                 photo: photoPath,
                 rfid_tag: rfidTag,
                 name: queryName
             });
-            if (req.files) {
+            if (req.files.photo) {
+                console.log('moving photo');
                 sampleFile.mv('./public/images/' + req.files.photo.name, function (err) {
                     if (err)
                         return res.status(500).sendFile(path.join(__dirname, '/public/', 'add_fail.html'));
                     //console.log('Photo uploaded!');
                 });
-                db.swimmers.save(new_swimmer);
-                res.status(200).sendFile(path.join(__dirname, '/public/', 'add_success.html'))
-                //console.log('new swimmer created');
             }
+            db.swimmers.save(new_swimmer);
+            res.status(200).sendFile(path.join(__dirname, '/public/', 'add_success.html'))
+            //console.log('new swimmer created');
         }
             else { //Update the existing swimmers data
                 console.log('updating');
@@ -131,6 +136,10 @@ server.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+
+
+
 
 // error handlers
 // development error handler

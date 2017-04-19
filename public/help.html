@@ -34,7 +34,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Settings</a></li>
-                <li><a href="/help">Help</a></li>
+                <li><a href="#">Help</a></li>
             </ul>
         </div>
     </div>
@@ -54,27 +54,43 @@
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Data Dashboard</h1>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Swimmer</th>
-                    <th>Time</th>
-                    <th>Distance</th>
-                    <th>Weight</th>
-                </tr>
-                </thead>
-                <tbody id = "workout">
-                <script id = "workoutTemplate" type="text/template">
-                    <td class = "dateString"><%= dateString %></td>
-                    <td class = "swimmer"><%= swimmer%></td>
-                    <td><%= tot_time%></td>
-                    <td><%= distance%></td>
-                    <td><%= weight%></td>
-                </script>
-                </tbody>
-            </table>
+            <h1 class="page-header">Help Menu</h1>
+            <p> Welcome to the DTO4 Web Application!  A brief overview of the options available to you follows:
+                <br>
+            <ul>
+            <li>
+                'Overview' shows the 10 most recent workouts and polls the database every 5 seconds for updates.
+            </li>
+            <br>
+            <li>
+                'View Swimmers' displays the swimmers and rfid tag pairings that are in the database.
+            </li>
+            <br>
+            <li>
+                'Chart Data' allows the user to chart swimmer position versus time from a selection of the 10 most recent workouts.
+            </li>
+            <br>
+            <li>
+                'Export Data' provides a tool to export data over a specified date range.
+                <br>
+                Note the data ranges are valid from midnight of the first date through midnight of the second date.
+                <br>
+                For example, the range 4/13/17 - 4/15/17 will export all data from 12:00 AM 4/13/17 through 12:00 AM 4/15/17.
+            </li>
+            <br>
+            <li>
+                'Add/Edit Swimmer' is a menu for adding or editing swimmers in the database.
+                <br>
+                If the swimmer does not exist in the database, he or she is created and added.
+                <br>
+                If the swimmer already exists, his or her information will be edited.
+            </li>
+            <br>
+            <li>
+                'Delete Swimmer' removes a swimmer from the database by name.
+            </li>
+            </ul>
+            </p>
         </div>
     </div>
 </div>
