@@ -24,6 +24,7 @@ var data_export = require('./routes/export');
 var get_data = require('./routes/get_data');
 var add = require('./routes/add');
 var make_chart = require('./routes/make_chart');
+var del = require('./routes/delete');
 var server = express();
 
 
@@ -55,6 +56,7 @@ server.use('/export', data_export);
 server.use('/get_data', get_data);
 server.use('/add', add);
 server.use('/make_chart', make_chart);
+server.use('/delete', del);
 
 server.post('/add_swimmer', function(req,res) {
     //The sanitize function is used here to protect our database from attacks
@@ -108,6 +110,20 @@ server.post('/add_swimmer', function(req,res) {
     });
 });
 
+server.post('/delete_swimmer', function(req,res) {
+    console.log(req.body.firstname);
+    var queryName = sanitize(req.body.firstname) + " " + sanitize(req.body.lastname);
+    console.log('deleting ' + queryName);
+    db.swimmers.remove({'name': queryName}, function(err,result) {
+        console.log(result);
+        if(result.n === 0) {
+            res.sendFile(path.join(__dirname, '/public/', 'delete_fail.html'));
+        }
+        else {
+            res.status(200).sendFile(path.join(__dirname, '/public/', 'delete_success.html'));
+        }
+    });
+});
 
 // catch 404 and forward to error handler
 server.use(function(req, res, next) {
