@@ -44,17 +44,18 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="/">Overview <span class="sr-only">(current)</span></a></li>
+                <li><a href="/">Overview <span class="sr-only">(current)</span></a></li>
                 <li><a href="/roster">View Swimmers</a></li>
-                <li><a href="/chart">Analytics</a></li>
                 <li><a href="/export">Export Data</a></li>
             </ul>
             <ul class="nav nav-sidebar" id = "swimmer">
-                <li><a href="/add">Add Swimmer</a></li>
+                <li class="active"><a href="/add">Add/Edit Swimmer</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Application Dashboard</h1>
+            <h1 class="page-header">Add/Edit Swimmer</h1>
+            <p>Enter the following information to add a swimmer to the database</p>
+            <p>If the swimmer's name is already in the database, his/her information will be updated accordingly</p>
             <div id="default"/>
             <form id="addSwimmer" action="/add_swimmer" method = "post" enctype="multipart/form-data">
                 <div>
