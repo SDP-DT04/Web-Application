@@ -82,6 +82,16 @@ server.post('/add_swimmer', function(req,res) {
                     //console.log('Photo uploaded!');
                 });
             }
+            //db.swimmers.find('$and:' [{'rfid_tag': rfidTag}, {'name': 'Not Assigned'}], function(err, result) {
+            //    result.forEach(function(entry) {
+            //        console.log(entry.name);
+            //        console.log(entry.rfid_tag);
+            //        entry.name = queryName;
+                    //entry.rfid_tag = rfidTag;
+                    //entry.photo = photoPath;
+            //        db.swimmers.save(entry);
+            //    });
+            //});
             db.swimmers.save(new_swimmer); //add to database
             res.status(200).sendFile(path.join(__dirname, '/public/', 'add_success.html'))
             //console.log('new swimmer created');
