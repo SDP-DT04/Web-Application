@@ -1,0 +1,4 @@
+{ "_id" : { "$oid" : "58b584c0cc9e0944528faf97" }, "photo" : "images/mark.jpg", "rfid_tag" : 9570440, "name" : "Mark Archual", "workouts" : [] }
+{ "_id" : { "$oid" : "58b584c0cc9e0944528faf98" }, "photo" : "images/ethan.jpg", "rfid_tag" : 9570457, "name" : "Ethan Schweinsberg", "workouts" : [] }
+{ "_id" : { "$oid" : "58b584c0cc9e0944528faf99" }, "photo" : "images/tanner.jpg", "rfid_tag" : 9570736, "name" : "Tanner Daniels", "workouts" : [] }
+{ "_id" : { "$oid" : "58b584c0cc9e0944528faf96" }, "photo" : "images/jack.jpg", "rfid_tag" : 9569576, "name" : "Jack Wolfe", "workouts" : []}
