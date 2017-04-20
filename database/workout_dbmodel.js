@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+//model for workout entries
 var workout = new mongoose.Schema({
     rfid_tag: String,
     date: String,

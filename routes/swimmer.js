@@ -6,7 +6,7 @@ var db_model = require('../database/swimmer_dbmodel');
 router.get('/', function(req,res) {
     db.swimmers.find(function(err,swimmers) {
         if (!err) {
-            console.log(swimmers);
+            //console.log(swimmers);
             return res.send(swimmers);
         } else {
             return console.log(err);
@@ -17,7 +17,7 @@ router.get('/', function(req,res) {
 router.get('/:id', function(req,res) {
     db.swimmers.findOne({_id: db.ObjectId(req.params.id)}, function(err, swimmer) {
         if (!err) {
-            console.log(swimmers);
+            //console.log(swimmers);
             return res.send(swimmers);
         } else {
             return console.log(err);
@@ -34,12 +34,12 @@ router.post('/', function(req,res) {
 
     db.swimmers.save(swimmer);
     res.send(swimmer);
-    console.log('new swimmer created');
+    //console.log('new swimmer created');
 
 });
 
 router.put('/:id', function(req, res) {
-   console.log('updating swimmer ' + req.body.name);
+   //console.log('updating swimmer ' + req.body.name);
     db.swimmers.findOne({_id: db.ObjectId(req.params.id)}, function(err, swimmer) {
        swimmer.rfid_tag = req.body.rfid_tag;
        swimmer.name = req.body.name;
@@ -49,9 +49,9 @@ router.put('/:id', function(req, res) {
 });
 
 router.delete('/:id', function(req,res) {
-    console.log('deleting swimmer ' + req.body.name);
+    //console.log('deleting swimmer ' + req.body.name);
     db.swimmers.remove({_id: db.ObjectId(req.params.id)}, function(err, swimmer) {
-        console.log(req.body.name + ' removed');
+      //console.log(req.body.name + ' removed');
     });
 });
 

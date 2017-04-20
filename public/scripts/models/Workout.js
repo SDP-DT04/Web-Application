@@ -1,7 +1,8 @@
 var app = app || {};
 define(['../common', 'backbone'], function(common) {
     var Backbone = require('backbone');
-    console.log('Workout Model');
+    //console.log('Workout Model');
+    //Database model for workout
     app.Workout = Backbone.Model.extend({
         idAttribute: '_id',
         defaults: {
