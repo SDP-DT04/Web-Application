@@ -1,4 +1,5 @@
 var app = app || {};
+//Overall view for homepage table of workout data
 
 define(['/../common', 'backbone', 'underscore', '/../collections/WorkoutCollection', '/../views/WorkoutView', '/../models/Workout'], function(common) {
     var Backbone = require('backbone');
@@ -6,16 +7,15 @@ define(['/../common', 'backbone', 'underscore', '/../collections/WorkoutCollecti
         el: '#workout',
 
         initialize: function () {
-            console.log('Initialize Log View');
+            //console.log('Initialize Log View');
             this.collection = new app.WorkoutCollection();
             this.collection.fetch({reset:true});
             this.render();
             this.listenTo(this.collection, 'reset', this.render );
-            this.listenTo(this.collection, 'plot', this.renderPlot)
         },
 
         render: function () {
-            console.log('Rendering Log View');
+            //console.log('Rendering Log View');
             this.collection.each(function (item) {
                     this.renderWorkout(item);
                 },
@@ -24,13 +24,14 @@ define(['/../common', 'backbone', 'underscore', '/../collections/WorkoutCollecti
         },
 
         renderWorkout: function (item) {
-            console.log('Rendering Workout View');
+            //console.log('Rendering Workout View');
             var workoutView = new app.WorkoutView({
                 model: item
             });
             this.$el.append(workoutView.render().el);
         },
 
+        //Used to update table with new data on an interval
         renderUpdate: function() {
             this.$el.empty();
             this.collection.each(function(item) {
@@ -41,7 +42,7 @@ define(['/../common', 'backbone', 'underscore', '/../collections/WorkoutCollecti
         },
 
         renderNewWorkout: function(item) {
-            console.log('Rendering Workout Update');
+            //console.log('Rendering Workout Update');
             var workoutView = new app.WorkoutView({
                 model:item
             });

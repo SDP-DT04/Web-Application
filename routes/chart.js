@@ -8,9 +8,4 @@ router.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '../public', 'analytics.html'))
 });
 
-io.on('connection', function(socket) {
-    console.log('A User Connected');
-})
-
-
 module.exports = router;

@@ -19,7 +19,7 @@ router.get('/', function(req,res) {
 
     db.swimmers.findOne({'name': queryName}, function (err, swimmer) {
         if (!err) {
-            console.log(swimmer._id);
+            //console.log(swimmer._id);
             db.workouts.find({swimmer: (swimmer._id)}, function (err, workout) {
                 if (!err) {
                     console.log(workout);
@@ -32,8 +32,6 @@ router.get('/', function(req,res) {
                         if (!error) {
                             res.download(fileName + '.csv')
                         }
-                        console.log('stdout: ${stdout}');
-                        console.log('stderr: ${stderr}');
                     });
                 } else {
                     return console.log(err);

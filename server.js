@@ -4,28 +4,24 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var _ = require('underscore');
 var exphbs = require('express-handlebars');
 var fileUpload = require('express-fileupload');
-var db = require('./lib/database.js');
-var db_model = require('./database/swimmer_dbmodel');
-var sanitize = require('mongo-sanitize');
-
+var db = require('./lib/database.js'); //gives access to database and collections
+var db_model = require('./database/swimmer_dbmodel'); //models for data entries into DB
+var sanitize = require('mongo-sanitize'); //prevent injection attacks
 
 var routes = require('./routes/index'); //Route for homepage
-var swimmer = require('./routes/swimmer');
-var workout = require('./routes/workout');
-var id = require('./routes/id');
-var roster = require('./routes/roster'); //Route for database connection
-var name = require('./routes/name');
-var chart = require('./routes/chart');
-var recent = require('./routes/recent_workouts');
-var data_export = require('./routes/export');
-var get_data = require('./routes/get_data');
-var add = require('./routes/add');
-var make_chart = require('./routes/make_chart');
-var del = require('./routes/delete');
-var help = require('./routes/help');
+var swimmer = require('./routes/swimmer'); //GETS swimmer data in database
+var workout = require('./routes/workout'); //GETS workout data in database
+var roster = require('./routes/roster'); //serves HTML page for 'View Swimmer'
+var chart = require('./routes/chart'); //serves HTML page for 'Chart Data'
+var recent = require('./routes/recent_workouts'); //GETS recent_workout data in database
+var data_export = require('./routes/export'); //serves HTML for 'Export Data'
+var get_data = require('./routes/get_data'); //GETS data to export from database
+var add = require('./routes/add'); //serves HTML for 'Add/Edit Swimmer'
+var del = require('./routes/delete'); //serves HTML for 'Delete Swimmer'
+var help = require('./routes/help'); //serves HTML for 'Help'
+//creates express object instance
 var server = express();
 
 
@@ -45,26 +41,23 @@ server.use(express.static(path.join(__dirname, 'public')));
 server.use(fileUpload());
 
 
-server.use('/id', id); //route based on Swimmer ID
-//server.use('/data', data); //route to get all the data from the database
-server.use('/name', name); //route based on Swimmer name
-server.use('/swimmer', swimmer);
-server.use('/workout', workout);
-server.use('/roster', roster);
-server.use('/chart', chart);
-server.use('/recent', recent);
-server.use('/export', data_export);
-server.use('/get_data', get_data);
-server.use('/add', add);
-server.use('/make_chart', make_chart);
-server.use('/delete', del);
-server.use('/help', help);
+server.use('/swimmer', swimmer); //gets swimmer data from database
+server.use('/roster', roster); //serves 'View Swimmers' html
+server.use('/chart', chart); //serves 'Chart Data' html
+server.use('/recent', recent); //gets recent workouts
+server.use('/export', data_export); //serves HTML for export data
+server.use('/get_data', get_data); //gets data for exportation
+server.use('/add', add); //serves HTML for 'Add/Edit swimmers'
+server.use('/delete', del); //serves HTML for 'Delete Swimmer'
+server.use('/help', help); //serves HTML for Help page
 
+//Adds swimmer to the database
 server.post('/add_swimmer', function(req,res) {
     //The sanitize function is used here to protect our database from attacks
     var queryName = sanitize(req.body.firstname) + " " + sanitize(req.body.lastname);
-    var photoPath = "images/Z.png";
+    var photoPath = "images/Z.png"; //default image if none is specified
     var rfidTag = 0;
+
     if (req.files.photo) {
         var sampleFile = req.files.photo;
         photoPath = "images/"+sanitize(req.files.photo.name);
@@ -75,31 +68,31 @@ server.post('/add_swimmer', function(req,res) {
 
     db.swimmers.findOne({'name': queryName}, function (err, swimmer) {
         if (!swimmer) { //add a new swimmer if they are not in the database
-            console.log('creating new swimmer');
+            //console.log('creating new swimmer');
             var new_swimmer = new db_model({
                 photo: photoPath,
                 rfid_tag: rfidTag,
                 name: queryName
             });
-            if (req.files.photo) {
-                console.log('moving photo');
+            if (req.files.photo) { //If a file is specified, set the photo attribute
+                //console.log('moving photo');
                 sampleFile.mv('./public/images/' + req.files.photo.name, function (err) {
                     if (err)
                         return res.status(500).sendFile(path.join(__dirname, '/public/', 'add_fail.html'));
                     //console.log('Photo uploaded!');
                 });
             }
-            db.swimmers.save(new_swimmer);
+            db.swimmers.save(new_swimmer); //add to database
             res.status(200).sendFile(path.join(__dirname, '/public/', 'add_success.html'))
             //console.log('new swimmer created');
         }
             else { //Update the existing swimmers data
-                console.log('updating');
-                if (req.body.rfid_tag) {
-                    console.log('changing RFID Tag');
+                //console.log('updating');
+                if (req.body.rfid_tag) { //If the RFID tag was specified, update the entry
+                    //console.log('changing RFID Tag');
                     swimmer.rfid_tag = rfidTag;
                 }
-                if (req.files.photo) {
+                if (req.files.photo) { //If a file was uploaded, update the entry
                     //console.log('changing photo');
                     swimmer.photo = photoPath;
                     sampleFile.mv('./public/images/' + req.files.photo.name, function (err) {
@@ -108,23 +101,24 @@ server.post('/add_swimmer', function(req,res) {
                         //console.log('Photo uploaded!');
                     })
                 }
-                db.swimmers.save(swimmer);
+                db.swimmers.save(swimmer); //add to database
                 res.status(200).sendFile(path.join(__dirname, '/public/', 'add_success_edit.html'));
                 //console.log('Edits successfully made');
             }
     });
 });
 
+//delete the swimmer specified by name
 server.post('/delete_swimmer', function(req,res) {
-    console.log(req.body.firstname);
+    //console.log(req.body.firstname);
     var queryName = sanitize(req.body.firstname) + " " + sanitize(req.body.lastname);
-    console.log('deleting ' + queryName);
+    //console.log('deleting ' + queryName);
     db.swimmers.remove({'name': queryName}, function(err,result) {
-        console.log(result);
-        if(result.n === 0) {
+        //console.log(result);
+        if(result.n === 0) { //result.n specifies the number of deletions, if this is 0 then no one was deleted
             res.sendFile(path.join(__dirname, '/public/', 'delete_fail.html'));
         }
-        else {
+        else { //successful delete
             res.status(200).sendFile(path.join(__dirname, '/public/', 'delete_success.html'));
         }
     });
@@ -136,10 +130,6 @@ server.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
-
-
-
 
 // error handlers
 // development error handler

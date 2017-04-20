@@ -1,7 +1,8 @@
 var app = app || {};
 define(['/../common', 'backbone'], function(common) {
     var Backbone = require('backbone');
-    console.log('Swimmer Model');
+    //console.log('Swimmer Model');
+    //Database model for swimmer
     app.Swimmer = Backbone.Model.extend({
         idAttribute: '_id',
         defaults: {

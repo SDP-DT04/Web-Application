@@ -6,7 +6,7 @@ var db_model = require('../database/workout_dbmodel');
 router.get('/', function(req,res) {
     db.recent.find(function(err,workouts) {
         if (!err) {
-            console.log(workouts);
+            //console.log(workouts);
             return res.send(workouts);
         } else {
             return console.log(err);
@@ -17,7 +17,7 @@ router.get('/', function(req,res) {
 router.get('/:id', function(req,res) {
     db.workouts.findOne({_id: db.ObjectId(req.params.id)}, function(err, workout) {
         if (!err) {
-            console.log(workout);
+            //console.log(workout);
             return res.send(workout);
         } else {
             return console.log(err);
@@ -39,12 +39,12 @@ router.post('/', function(req,res) {
 
     db.workouts.save(workout);
     res.send(workout);
-    console.log('new workout created');
+    //console.log('new workout created');
 
 });
 
 router.put('/:id', function(req, res) {
-    console.log('updating workoout ' + req.body.date)
+    //console.log('updating workoout ' + req.body.date)
     db.workouts.findOne({_id: db.ObjectId(req.params.id)}, function(err, workout) {
         workout.rfid_tag = req.body.rfid_tag;
         workout.date = req.body.date;
@@ -58,9 +58,9 @@ router.put('/:id', function(req, res) {
 });
 
 router.delete('/:id', function(req,res) {
-    console.log('deleting workout ' + req.body.date);
+    //console.log('deleting workout ' + req.body.date);
     db.workouts.remove({_id: db.ObjectId(req.params.id)}, function(err, workout) {
-        console.log('workout removed');
+        //console.log('workout removed');
     });
 });
 

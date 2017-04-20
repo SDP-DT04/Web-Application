@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+//model for swimmer entries
 var swimmer = new mongoose.Schema({
     photo: String,
     rfid_tag: String,

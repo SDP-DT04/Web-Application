@@ -23,7 +23,7 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-var io = require('socket.io')(server);
+var io = require('socket.io')(server); //Needed for communication between server and client
 
 
 /**
@@ -34,21 +34,23 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-xbee.start();
+xbee.start(); //Opens and starts XBEE communication
 
-io.on('connection', function (socket) {
-    socket.emit('connection', {hello: 'world'});
-    socket.on('make chart', function (data) {
-        console.log('making chart');
-        console.log(data.name);
-        console.log(data.date);
+io.on('connection', function (socket) { //Opens communication channel to the front end
+    socket.emit('connection', {hello: 'connected'}); //Sends a message to the front end
+    socket.on('make chart', function (data) { //receives a message from the front end to create a graph
+        //console.log('making chart');
+        //console.log(data.name);
+        //console.log(data.date);
         db.recent_workouts.findOne({$and : [{'dateString': data.date.toString()}, {'swimmer': data.name.toString()}]}, function(err, workout) {
             if(!err) {
-                console.log(workout.tot_time);
-                console.log(workout.coefficients);
+                //console.log(workout.tot_time);
+                //console.log(workout.coefficients);
+
+                //makes a call to the external function to recreate the position data
                 var result = create_position.expand_postion(0, workout.tot_time, 1, workout.coefficients);
-                console.log('position ' + result.position);
-                console.log('time ' + result.time);
+                //console.log('position ' + result.position);
+                //console.log('time ' + result.time);
                 socket.emit('position', {result: result});
             }
             else {
