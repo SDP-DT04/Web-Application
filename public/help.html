@@ -54,11 +54,12 @@
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Help Menu</h1>
+            <h2 class="page-header">Website Operations</h2>
             <p> Welcome to the DTO4 Web Application!  A brief overview of the options available to you follows:
                 <br>
             <ul>
             <li>
-                'Overview' shows the 10 most recent workouts and polls the database every 5 seconds for updates.
+                'Overview' shows the 10 most recent workouts and polls the database every 4 seconds for updates.
             </li>
             <br>
             <li>
@@ -82,7 +83,7 @@
                 <br>
                 If the swimmer does not exist in the database, he or she is created and added.
                 <br>
-                If the swimmer already exists, his or her information will be edited.
+                If the swimmer already exists, his or her information will be edited accordingly.
             </li>
             <br>
             <li>
@@ -90,6 +91,20 @@
             </li>
             </ul>
             </p>
+            <h2 class="page-header">System Operations</h2>
+            <p>     Upon startup, scan the RFID tag card for the swimmer that will use the machine, then add the desired weight.  Additional weight changes should only occur between repetitions.
+            <br>
+                The system is calibrated to automatically start data collection when the swimmer pushes off the wall and begins a repetition.
+            <br>
+                Upon completion of a repetition the swimmer should wait until the clock resets to all zeroes before attempting another rep.
+            <br>
+            <br>
+                Make sure that the swimmer as an RFID tag associated associated with their name in the database.  This can be confirmed on the 'View Swimmers' page.
+                Otherwise, the name associated with the repetition will be 'Not Assigned'.
+            <br>
+                Swimmer information can be added, edited, or deleted through the corresponding website pages.
+            </p>
+
         </div>
     </div>
 </div>
