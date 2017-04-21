@@ -4,7 +4,7 @@ var db = require('../lib/database.js');
 var db_model = require('../database/workout_dbmodel');
 
 router.get('/', function(req,res) {
-    db.recent_workouts.find(function(err,workouts) {
+    db.recent_workouts.find({}, null, {sort: {date: -1}}, function(err,workouts) {
         if (!err) {
             //console.log(workouts);
             return res.send(workouts);
