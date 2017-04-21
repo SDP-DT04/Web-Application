@@ -8,6 +8,7 @@ var workout = new mongoose.Schema({
     weight: String,
     tot_time: String,
     distance: String,
+    max_force: String,
     coefficients: Array,
     swimmer: String
 });
