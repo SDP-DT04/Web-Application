@@ -7,6 +7,7 @@ var workout = new mongoose.Schema({
     dateString: String,
     weight: String,
     tot_time: String,
+    acc_time: String,
     distance: String,
     max_force: String,
     coefficients: Array,

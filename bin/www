@@ -9,7 +9,8 @@ var debug = require('debug')('Web-Application:server');
 var http = require('http');
 var xbee = require('../lib/xbee.js');
 var db = require('../lib/database.js');
-var create_position = require('../lib/data-processor');
+var calc = require('../lib/data-processor');
+var path = require('path');
 
 /**
  * Get port from environment and store in Express.
@@ -25,6 +26,14 @@ app.set('port', port);
 var server = http.createServer(app);
 var io = require('socket.io')(server); //Needed for communication between server and client
 
+var fs = require('fs');
+
+//var data = fs.readFileSync(path.join(__dirname, '../test.txt'), 'utf-8');
+//var accel = data.split(',');
+//accel = accel.map(function(s) {return Number(s)});
+//console.log(accel);
+
+//calc.process_dataset(accel);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -48,7 +57,11 @@ io.on('connection', function (socket) { //Opens communication channel to the fro
                 //console.log(workout.coefficients);
 
                 //makes a call to the external function to recreate the position data
-                var result = create_position.expand_postion(0, workout.tot_time, 1, workout.coefficients);
+                var result = create_position.expand_postion(0, workout.acc_time, 0.5, workout.coefficients);
+                if (workout.tot_time - workout.acc_time > 0.5) {
+                    result.position.push(result.position(result.position.length()));
+                    result.time.push(result.time(result.time.length())+0.5);
+                }
                 //console.log('position ' + result.position);
                 //console.log('time ' + result.time);
                 socket.emit('position', {result: result});
