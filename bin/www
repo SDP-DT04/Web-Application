@@ -57,11 +57,13 @@ io.on('connection', function (socket) { //Opens communication channel to the fro
                 //console.log(workout.coefficients);
 
                 //makes a call to the external function to recreate the position data
-                var result = create_position.expand_postion(0, workout.acc_time, 0.5, workout.coefficients);
-                if (workout.tot_time - workout.acc_time > 0.5) {
-                    result.position.push(result.position(result.position.length()));
-                    result.time.push(result.time(result.time.length())+0.5);
-                }
+                var result = calc.expand_postion(0, workout.acc_time, 0.5, workout.coefficients);
+                console.log('number of packets lost');
+                console.log(workout.tot_time - workout.acc_time);
+                //if (workout.tot_time - workout.acc_time > 0.5) {
+                //    result.position.push(result.position[result.position.length]);
+                //    result.time.push(result.time[result.time.length]+0.5);
+                //}
                 //console.log('position ' + result.position);
                 //console.log('time ' + result.time);
                 socket.emit('position', {result: result});
