@@ -63,7 +63,7 @@ server.post('/add_swimmer', function(req,res) {
         photoPath = "images/"+sanitize(req.files.photo.name);
     }
     if (req.body.rfid_tag) {
-        rfidTag = sanitize(req.body.rfid_tag);
+        rfidTag = Number(sanitize(req.body.rfid_tag));
     }
 
     db.swimmers.findOne({'name': queryName}, function (err, swimmer) {
